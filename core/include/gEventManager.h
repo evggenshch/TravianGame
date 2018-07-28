@@ -1,0 +1,12 @@
+//
+// Created by evggenshch on 26.07.18.
+//
+
+#ifndef EVGENIJ_SCHERBAKOV_GAME_GEVENTMANAGER_H
+#define EVGENIJ_SCHERBAKOV_GAME_GEVENTMANAGER_H
+
+class gEventManager {
+
+};
+
+#endif //EVGENIJ_SCHERBAKOV_GAME_GEVENTMANAGER_H

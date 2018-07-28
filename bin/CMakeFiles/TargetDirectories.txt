@@ -1,0 +1,7 @@
+/home/evggenshch/7bits_SummerSchool/evgenij-scherbakov-game/bin/CMakeFiles/rebuild_cache.dir
+/home/evggenshch/7bits_SummerSchool/evgenij-scherbakov-game/bin/CMakeFiles/edit_cache.dir
+/home/evggenshch/7bits_SummerSchool/evgenij-scherbakov-game/bin/CMakeFiles/lint.dir
+/home/evggenshch/7bits_SummerSchool/evgenij-scherbakov-game/bin/CMakeFiles/evgenij-scherbakov-game.dir
+/home/evggenshch/7bits_SummerSchool/evgenij-scherbakov-game/bin/core/CMakeFiles/rebuild_cache.dir
+/home/evggenshch/7bits_SummerSchool/evgenij-scherbakov-game/bin/core/CMakeFiles/edit_cache.dir
+/home/evggenshch/7bits_SummerSchool/evgenij-scherbakov-game/bin/core/CMakeFiles/core_lib.dir
