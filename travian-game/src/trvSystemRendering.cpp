@@ -4,28 +4,21 @@
 
 #include "../include/trvSystemRendering.h"
 
-void trvSystemRendering::update_tb(world * g_w, g_tb_timer * game_timer) {
-  g_ui::draw_g_map(g_w->get_map());
-  g_ui::print_stats_tb(game_timer, &g_w->get_map());
+void trvSystemRendering::drawGameObject(gEntity * gameObject) {
+  for(size_t i = 0; i < gameObject; i++) {
+    for(size_t j = 0; j < ; j++) {
+
+    }
+  }
+}
+
+void trvSystemRendering::drawGameMap(trvIOContainerWorld *gameWorld) {
+  std::for_each(gameWorld->gameObjects.begin(), gameWorld->gameObjects.end(), drawGameObject);
 }
 
 void trvSystemRendering::update_rt(world * g_w, g_rt_timer * game_timer) {
   g_ui::draw_g_map(g_w->get_map());
   g_ui::print_stats_rt(game_timer, &g_w->get_map());
-}
-
-void trvSystemRendering::lose_tb_report(world * g_w, g_results_collector <g_core::tb_time > * game_results) {
-  clear();
-  g_ui::print_mes("YOU LOSE!");
-  g_ui::print_score_tb(game_results);
-  g_ui::input_key();
-}
-
-void trvSystemRendering::win_tb_report(world * g_w, g_results_collector <g_core::tb_time > * game_results) {
-  clear();
-  g_ui::print_mes("YOU WON!");
-  g_ui::print_score_tb(game_results);
-  g_ui::input_key();
 }
 
 void trvSystemRendering::win_rt_report(world * g_w, g_results_collector <g_core::rt_time > * game_results) {

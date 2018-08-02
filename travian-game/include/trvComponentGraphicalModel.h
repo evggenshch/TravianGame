@@ -6,9 +6,14 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTLOCATION_H
 
 #include <include/gTile.h>
-class trvComponentGraphicalModel {
+#include <include/gComponent.h>
+class trvComponentGraphicalModel : gComponent {
  private:
-    vector <gTile> ;
+    std::vector < std::vector <gTile> > array;
+ public:
+    trvComponentGraphicalModel(std::vector < std::vector <gTile> > graphicArray) {
+      array = graphicArray;
+    }
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTLOCATION_H

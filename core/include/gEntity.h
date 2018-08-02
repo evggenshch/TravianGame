@@ -23,12 +23,12 @@
 
 class gEntity {
 private:
-    size_t hash_code;
+    size_t hashCode;
 public:
     gEntity();
-    virtual ~gEntity() = 0;
-    size_t get_hash_code();
-    void set_hash_code(size_t (*hash_function) <gEntity> = std::hash<gEntity>);
+    ~gEntity() {delete this;};
+    size_t getHashCode();
+    void setHashCode(size_t (*hash_function) <gEntity> = std::hash<gEntity>);
 };
 
 

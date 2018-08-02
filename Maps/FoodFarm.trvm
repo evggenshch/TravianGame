@@ -1,9 +1,9 @@
-MachineGunPointInit
+FoodFarmInit
 GraphicMap
 2 3
-#╠#
-╘o╛
+║▒▒
+⌂══
 7 0 7 0 7 0
 7 0 7 0 7 0
 Health
-100
+50

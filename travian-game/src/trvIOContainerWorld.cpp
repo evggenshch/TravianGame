@@ -12,6 +12,8 @@ int trvIOContainerWorld::getCurrentGameMode() {
   return currentGameMode;
 }
 
+
+
 /*  template <typename entityClass, typename... constructorArgs> void trvIOContainerWorld::createEntity(constructorArgs... args) {
   gameObjects.insert(new entityClass(args));
 };  */

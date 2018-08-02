@@ -48,7 +48,7 @@ void gGraphics::drawTile(gTile cur_cel) {
     attroff(COLOR_PAIR(1));
 }
 
-void gGraphics::drawMap(gMap & cur_map) {
+/*    void gGraphics::drawMap(gMap & cur_map) {
     clear();
     for(size_t i = 0; i <= cur_map.get_size_x() + 1; i++) {
       mvprintw(0, i, "#");
@@ -63,7 +63,7 @@ void gGraphics::drawMap(gMap & cur_map) {
     for(size_t i = 0; i <= cur_map.get_size_x() + 1; i++) {
       mvprintw(cur_map.get_size_y() + 1, i, "#");
     }
-}
+}    */
 
 void gGraphics::print_mes(const char * mes) {
     clear();

@@ -5,4 +5,8 @@
 #include "include/gEntity.h"
 #include "include/gTile.h"
 
-size_t gEntity::get_hash_code() { return hash_code; }
+/*  gEntity::gEntity~() {
+  delete this;
+}  */
+
+size_t gEntity::getHashCode() { return this->hashCode; }

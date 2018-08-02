@@ -35,8 +35,8 @@ int main() {
       noecho();
       //  g_ui::input_message(&name_string);
 
-      g_ui::print_mes("Choose game mode, 'r' for real-time, 't' for turn-based, 'e' for exit ");
-      user_key = g_ui::input_key();
+      gGraphics::print_mes("Choose game mode, 'r' for real-time, 't' for turn-based, 'e' for exit ");
+      user_key = gGraphics::input_key();
       printw("%c", user_key);
 
       switch (user_key) {

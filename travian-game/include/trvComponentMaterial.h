@@ -5,7 +5,7 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMATERIAL_H
 #define EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMATERIAL_H
 
-class trvEntityMaterial {
+class trvComponentMaterial {
  private:
 
 };

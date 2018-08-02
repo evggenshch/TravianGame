@@ -9,10 +9,9 @@
 
 class trvSystemRendering {
  public:
-  static void update_tb(world * g_w, g_tb_timer * game_time);
+  static void drawGameObject(gEntity *);
+  static void drawGameMap(trvIOContainerWorld * gameWorld);
   static void update_rt(world * g_w, g_rt_timer * game_time);
-  static void lose_tb_report(world * g_w, g_results_collector <g_core::tb_time > * game_results);
-  static void win_tb_report(world * g_w, g_results_collector <g_core::tb_time > * game_results);
   static void win_rt_report(world * g_w, g_results_collector <g_core::rt_time > * game_results);
 };
 
