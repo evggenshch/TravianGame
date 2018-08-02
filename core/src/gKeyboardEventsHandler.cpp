@@ -3,3 +3,7 @@
 //
 
 #include "include/gKeyboardEventsHandler.h"
+
+int gKeyboardEventsHandler::inputKey() {
+  return getch();
+}

@@ -7,8 +7,9 @@
 
 #include "gLibsEssential.h"
 
-class g_map_parser {
+class gFileParser {
  public:
+  void loadEntityFromFile ();
   template <typename T> void read_parameter(char *, FILE *, T &);
 };
 

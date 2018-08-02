@@ -20,7 +20,7 @@ int main() {
     while (1) {
 
 
-      g_ui::init_g_ui();
+      gGraphics::startGraphics();
     /*  g_ui::print_mes("Start game (y/n)?");
 
       switch (user_key) {
@@ -29,7 +29,7 @@ int main() {
         default: continue;
       }  */
       char name_string[100];
-      g_ui::print_mes("Enter player name: ");
+      gGraphics::print_mes("Enter player name: ");
       echo();
       scanw("%s", name_string);
       noecho();
@@ -61,7 +61,7 @@ int main() {
 
 #include "../../core/include/g_rt_timer.h"
 #include "../include/game_rt_loop.h"
-#include "../include/render_system.h"
+#include "../include/trvSystemRendering.h"
 #include "../include/trvSystemCursorMovement.h"
 #include "../include/spawn_system.h"
 #include "../include/stats_system.h"

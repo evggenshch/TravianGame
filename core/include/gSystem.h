@@ -5,7 +5,7 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_G_SYSTEM_H
 #define EVGENIJ_SCHERBAKOV_GAME_G_SYSTEM_H
 
-class g_system {
+class gSystem {
  public:
   virtual void update() = 0;
 };

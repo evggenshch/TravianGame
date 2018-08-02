@@ -5,10 +5,11 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_GKEYBOARDEVENTSHANDLER_H
 #define EVGENIJ_SCHERBAKOV_GAME_GKEYBOARDEVENTSHANDLER_H
 
+#include "gLibsEssential.h"
+
 class gKeyboardEventsHandler {
  public:
-  void changeInputMode();
-
+  static int inputKey();
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_GKEYBOARDEVENTSHANDLER_H

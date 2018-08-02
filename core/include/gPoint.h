@@ -8,13 +8,13 @@
 #include "gLibsEssential.h"
 class gPoint {
  private:
-  g_core::int_t x, y;
+  gCore::int_t x, y;
  public:
-  gPoint(g_core::int_t, g_core::int_t);
-  g_core::int_t get_x();
-  g_core::int_t get_y();
-  void set_x(g_core::int_t);
-  void set_y(g_core::int_t);
+  gPoint(gCore::int_t inputX = 0, gCore::int_t inputY = 0);
+  gCore::int_t getX();
+  gCore::int_t getY();
+  void setX(gCore::int_t);
+  void setY(gCore::int_t);
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_G_POINT_H

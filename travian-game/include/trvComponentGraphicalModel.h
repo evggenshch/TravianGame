@@ -5,7 +5,8 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTLOCATION_H
 #define EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTLOCATION_H
 
-class trvComponentLocation {
+#include <include/gTile.h>
+class trvComponentGraphicalModel {
  private:
     vector <gTile> ;
 };

@@ -6,9 +6,12 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVMAINMENU_H
 
 #include <include/gDialog.h>
+#include <include/gPoint.h>
 
 class trvMainMenu : public gDialog {
-
+ public:
+  trvMainMenu(gPoint inputTopLeft, gPoint inputBottomRight, std::initializer_list <std::string> inputOptions) : gDialog(inputTopLeft, inputBottomRight,
+  inputOptions) {}
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVMAINMENU_H

@@ -4,18 +4,14 @@
 
 #include "../include/trvIOContainerWorld.h"
 
-player & world::get_players() {
+player & trvIOContainerWorld::get_players() {
   return user;
 }
 
-gMap & world::get_map() {
-  return game_map;
+int trvIOContainerWorld::getCurrentGameMode() {
+  return currentGameMode;
 }
 
-int world::get_map_count() {
-  return map_count;
-}
-
-void world::inc_map_count() {
-  ++map_count;
-}
+/*  template <typename entityClass, typename... constructorArgs> void trvIOContainerWorld::createEntity(constructorArgs... args) {
+  gameObjects.insert(new entityClass(args));
+};  */

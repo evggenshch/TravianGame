@@ -7,7 +7,7 @@
 #include <vector>
 #include "../../core/include/g_rt_timer.h"
 #include "../include/game_rt_loop.h"
-#include "../include/render_system.h"
+#include "../include/trvSystemRendering.h"
 #include "../include/trvSystemCursorMovement.h"
 #include "../include/spawn_system.h"
 #include "../include/trvSystemStats.h"
@@ -23,7 +23,7 @@ void game_rt_loop::init_rt_loop(g_results_collector <g_core::rt_time > * game_re
     std::chrono::high_resolution_clock::time_point previous = std::chrono::high_resolution_clock.now();
     std::chrono::duration <double, std::chrono::seconds> lag(0.0);       /// * full realtime without delay  //
     while (game_timer.change_g_time(-1.0 / static_cast<double > (game_world.get_map().get_tick_per_second()))) {
-      render_system::update_rt(&game_world, &game_timer);
+      trvSystemRendering::update_rt(&game_world, &game_timer);
       std::chrono::high_resolution_clock::time_point current = std::chrono::high_resolution_clock.now();
       std::chrono::duration <double, std::chrono::seconds> elapsed = std::chrono::duration_cast<std::chrono::seconds>(current - previous);
       previous = current;
@@ -39,5 +39,5 @@ void game_rt_loop::init_rt_loop(g_results_collector <g_core::rt_time > * game_re
       stats_system::update_rt(&game_world, &game_timer, game_results);
     }
     game_results->change_cur_score(1.0 / static_cast<double > (game_world.get_map().get_tick_per_second()));
-    render_system::win_rt_report(&game_world, game_results);
+    trvSystemRendering::win_rt_report(&game_world, game_results);
 }

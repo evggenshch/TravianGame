@@ -23,6 +23,7 @@
 #include <string>
 #include <iomanip>
 #include <chrono>
+#include <map>
 #include <thread>
 #include <ncurses.h>
 #include <unordered_map>
@@ -37,7 +38,7 @@ namespace gCore {
   typedef int int_t;
   typedef double double_t;
   enum EVENT_CODES {KEY_PRESSED};
-  enum GAME_MODES {MENU_MODE};
+  enum GAME_MODES {MENU_MODE, CAMERA_MODE, CONSTRUCTION_MODE, BUILDING_MODE};
 }
 
 // typedef int int_t;

@@ -5,15 +5,21 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_G_DIALOG_H
 #define EVGENIJ_SCHERBAKOV_GAME_G_DIALOG_H
 
+#include "gPoint.h"
+
 class gDialog {
  private:
   std::string title;
-  g_point top_left, bottom_right;
+  std::vector <std::string> options;
+  gPoint topLeft, bottomRight;
  public:
-  gDialog(g_point, g_point);
-  g_point get_top_left();
-  g_point get_bottom_right();
-  std::string get_title();
+  gDialog(gPoint inputTopLeft, gPoint inputBottomRight, std::initializer_list <std::string>);
+  gPoint getTopLeft();
+  gPoint getBottomRight();
+  std::string getTitle();
+  std::vector <std::string> getOptions();
+  std::string getOptionAt(int i);
+  virtual ~gDialog();
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_G_DIALOG_H

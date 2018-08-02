@@ -1,0 +1,13 @@
+//
+// Created by evggenshch on 30.07.18.
+//
+
+#ifndef EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMATERIAL_H
+#define EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMATERIAL_H
+
+class trvEntityMaterial {
+ private:
+
+};
+
+#endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMATERIAL_H

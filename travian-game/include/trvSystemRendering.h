@@ -7,7 +7,7 @@
 #include "trvIOContainerWorld.h"
 #include "include/gGraphics.h"
 
-class render_system {
+class trvSystemRendering {
  public:
   static void update_tb(world * g_w, g_tb_timer * game_time);
   static void update_rt(world * g_w, g_rt_timer * game_time);

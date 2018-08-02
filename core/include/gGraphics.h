@@ -24,14 +24,14 @@ public:
     static void drawTile(gTile);
     static void drawMap(gMap &);
     static void drawDialog(gDialog *);
+    static template <typename T> void drawEntity(T * inputEntity);
 
 
     static void print_mes(const char *);
     static void print_int_number (int, int);
     static void print_stats_rt(g_rt_timer *, gMap *);
-    static void print_score_tb(g_results_collector <g_core::tb_time > * game_results);
-    static void print_score_rt(g_results_collector <g_core::rt_time > * game_results);
-    static int input_key();
+    static void print_score_tb(g_results_collector <gCore::tb_time > * game_results);
+    static void print_score_rt(g_results_collector <gCore::rt_time > * game_results);
     //  static void input_message(char [100] *);
     static void close_g_ui();
 };

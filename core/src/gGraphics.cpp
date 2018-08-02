@@ -5,29 +5,40 @@
 #include <include/g_rt_timer.h>
 #include "include/gGraphics.h"
 
-void gGraphics::startGraphics() {
+void gGraphics::startGraphics() {  //   +
     initscr();
     noecho();
-    // start_color();
+    start_color();
 }
 
-void gGraphics::drawDialog(gDialog * game_dialog) {
-  mvprintw(game_dialog->get_top_left().get_y(), game_dialog->get_top_left().get_x(), "%c", 201);
-  mvprintw(game_dialog->get_top_left().get_y(), game_dialog->get_bottom_right().get_x(), "X");
-  mvprintw(game_dialog->get_bottom_right().get_y(), game_dialog->get_bottom_right().get_x(), "%c", 188);
-  mvprintw(game_dialog->get_bottom_right().get_y(), game_dialog->get_top_left().get_x(), "%c", 200);
-  for(size_t i = game_dialog->get_top_left().get_y() + 1; i < game_dialog->get_bottom_right().get_y() - 1; i++) {
-    mvprintw(i, game_dialog->get_top_left().get_x(), "%c", 186);
-    mvprintw(i, game_dialog->get_bottom_right().get_x(), "%c", 186);
+void gGraphics::drawDialog(gDialog * gameDialog) {    //   +
+  mvprintw(gameDialog->getTopLeft().getY(), gameDialog->getTopLeft().getX(), "%c", 201);
+  mvprintw(gameDialog->getTopLeft().getY(), gameDialog->getBottomRight().getX(), "X");
+  mvprintw(gameDialog->getBottomRight().getY(), gameDialog->getBottomRight().getX(), "%c", 188);
+  mvprintw(gameDialog->getBottomRight().getY(), gameDialog->getTopLeft().getX(), "%c", 200);
+  for(size_t i = gameDialog->getTopLeft().getY() + 1; i < gameDialog->getBottomRight().getY() - 1; i++) {
+    mvprintw(i, gameDialog->getTopLeft().getX(), "%c", 186);
+    mvprintw(i, gameDialog->getBottomRight().getX(), "%c", 186);
   }
-  for(size_t i = game_dialog->get_top_left().get_x() + 1; i < game_dialog->get_bottom_right().get_x(); i++) {
-    mvprintw(game_dialog->get_top_left().get_y(), i, "%c", 205);
-    mvprintw(game_dialog->get_bottom_right().get_y(), i, "%c", 205);
+  for(size_t i = gameDialog->getTopLeft().getX() + 1; i < gameDialog->getBottomRight().getX(); i++) {
+    mvprintw(gameDialog->getTopLeft().getY(), i, "%c", 205);
+    mvprintw(gameDialog->getBottomRight().getY(), i, "%c", 205);
   }
-  mvprintw(game_dialog->get_top_left().get_y(), (game_dialog->get_top_left().get_x() + game_dialog->get_bottom_right().get_x()
-               - game_dialog->get_title().length()) / 2, "%s", game_dialog->get_title().c_str());
+  mvprintw(gameDialog->getTopLeft().getY(), (gameDialog->getTopLeft().getX() + gameDialog->getBottomRight().getX()
+               - gameDialog->getTitle().length()) / 2, "%s", gameDialog->getTitle().c_str());
+  for(size_t i = 0; i < gameDialog->getOptions().size(); i++) {
+    mvprintw(i + (gameDialog->getTopLeft().getX() + gameDialog->getBottomRight().getX() - gameDialog->getOptions().size()) / 2 + 1,
+             (gameDialog->getTopLeft().getX() + gameDialog->getBottomRight().getX()
+                 - gameDialog->getOptionAt(i).length()) / 2,
+             "%s", gameDialog->getOptionAt(i).c_str());
+  }
 }
 
+template <typename T> void gGraphics::drawEntity(T * inputEntity) {
+  for(size_t i = 0; i < inputEntity->pos.size(); i++) {
+
+  }
+}
 
 
 void gGraphics::drawTile(gTile cur_cel) {
@@ -69,9 +80,7 @@ void gGraphics::print_stats_rt(g_rt_timer * game_timer, gMap * game_map) {
   printw("Steps remaining:  %lf", game_timer->get_g_time());;
 }
 
-int gGraphics::input_key() {
-    return getch();
-}
+
 
 /*  void g_ui::input_message(char & str[100]) {
   echo();
@@ -79,7 +88,7 @@ int gGraphics::input_key() {
   noecho();
 }  */
 
-void g_ui::print_score_tb(g_results_collector <g_core::tb_time > * game_results) {
+void gGraphics::print_score_tb(g_results_collector <g_core::tb_time > * game_results) {
   game_results->get_sorted_total_score();
   mvprintw(1, 0, "YOUR_SCORE:  %i\n", game_results->get_cur_score());
   for(size_t i = 0; i < game_results->get_total_score_size() ; i++) {
@@ -88,7 +97,7 @@ void g_ui::print_score_tb(g_results_collector <g_core::tb_time > * game_results)
   }
 }
 
-void g_ui::print_score_rt(g_results_collector <g_core::rt_time > * game_results) {
+void gGraphics::print_score_rt(g_results_collector <g_core::rt_time > * game_results) {
   game_results->get_sorted_total_score();
   mvprintw(1, 0, "YOUR_SCORE: %lf\n", game_results->get_cur_score());
   for(size_t i = 0; i < game_results->get_total_score_size(); i++) {
@@ -97,6 +106,6 @@ void g_ui::print_score_rt(g_results_collector <g_core::rt_time > * game_results)
   }
 }
 
-void g_ui::close_g_ui() {
+void gGraphics::close_g_ui() {
     endwin();
 }

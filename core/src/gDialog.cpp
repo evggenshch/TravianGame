@@ -4,17 +4,28 @@
 
 #include "include/gDialog.h"
 
-gDialog::gDialog(g_point, g_point) {
+gDialog::gDialog(gPoint inputTopLeft, gPoint inputBottomRight, std::initializer_list <std::string> inputOptions) {
+  this->topLeft = inputTopLeft;
+  this->bottomRight = inputBottomRight;
+  this->options.insert(this->options.end(), inputOptions.begin(), inputOptions.end());
 }
 
-g_point gDialog::get_top_left() {
-  return top_left;
+gPoint gDialog::getTopLeft() {
+  return this->topLeft;
 }
 
-g_point gDialog::get_bottom_right() {
-  return bottom_right;
+gPoint gDialog::getBottomRight() {
+  return this->getBottomRight();
 }
 
-std::string gDialog::get_title() {
-  return title;
+std::string gDialog::getTitle() {
+  return this->title;
+}
+
+std::vector <std::string> gDialog::getOptions() {
+  return this->options;
+}
+
+std::string gDialog::getOptionAt(int i) {
+  return options[i];
 }

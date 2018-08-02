@@ -5,10 +5,10 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_TRVBUILDING_H
 #define EVGENIJ_SCHERBAKOV_GAME_TRVBUILDING_H
 
-#include "trvComponentLocation.h"
+#include "trvComponentGraphicalModel.h"
 class trvEntityBuilding {
  private:
-  trvComponentLocation buildingLocation;
+  trvComponentGraphicalModel buildingLocation;
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVBUILDING_H
