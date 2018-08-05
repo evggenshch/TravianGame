@@ -9,7 +9,7 @@
 #include "include/gTile.h"
 #include "trvIOContainerWorld.h"
 
-class spawn_system : public g_system  {
+class trvSystemEnemySpawn : public g_system  {
  public:
   static void update(world * g_w);
 };

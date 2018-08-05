@@ -3,9 +3,9 @@
 //
 
 #include <include/gGraphics.h>
-#include "../include/spawn_system.h"
+#include "../include/trvSystemEnemySpawn.h"
 
-void spawn_system::update(world * g_w) {    /*** random_device does not function for some reason  **/
+void trvSystemEnemySpawn::update(world * g_w) {    /*** random_device does not function for some reason  **/
   // bool flag_success = false;
   // std::random_device rd;
   // std::mt19937 mt(rand());

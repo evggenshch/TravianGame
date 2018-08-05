@@ -9,8 +9,8 @@
 #include "gTile.h"
 #include "g_results_collector.h"
 #include "gLibsEssential.h"
-#include "g_timer.h"
-#include "g_rt_timer.h"
+#include "gTimer.h"
+#include "gRTTimer.h"
 #include "gDialog.h"
 
 /**
@@ -29,7 +29,7 @@ public:
 
     static void print_mes(const char *);
     static void print_int_number (int, int);
-    static void print_stats_rt(g_rt_timer *, gMap *);
+    static void print_stats_rt(gRTTimer *, gMap *);
     static void print_score_tb(g_results_collector <gCore::tb_time > * game_results);
     static void print_score_rt(g_results_collector <gCore::rt_time > * game_results);
     //  static void input_message(char [100] *);

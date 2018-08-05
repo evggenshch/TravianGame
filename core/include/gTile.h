@@ -23,16 +23,16 @@ private:
 public:
     gTile(int fore_color = 7, int back_color = 0, char sym = '.');
     gTile(int, int, int, int, char);
-    void setX(int);
-    void setY(int);
+//    void setX(int);
+//    void setY(int);
     void setForeColor (int);
     void setBackColor (int);
     void setSym (char);
-    int getX();
-    int getY();
-    int getForeColor();
-    int getBackColor();
-    char getSym();
+    int getX() const;
+    int getY() const;
+    int getForeColor() const;
+    int getBackColor() const;
+    char getSym() const;
 };
 
 

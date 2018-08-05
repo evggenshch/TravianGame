@@ -8,12 +8,12 @@
 #include "gLibsEssential.h"
 
 template <typename T>
-class g_timer {
+class gTimer {
 private:
   T g_time;
 public:
-  g_timer(T);
-  ~g_timer();
+  gTimer(T);
+  ~gTimer();
   void set_g_time(T);
   T get_g_time();
  // virtual bool change_g_time(T);

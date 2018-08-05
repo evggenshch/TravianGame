@@ -32,7 +32,7 @@ class trvFileParser {
             graphicArray[i][j].setBackColor(curInt);
           }
         }
-        trvComponentGraphicalModel * graphicComponent = new trvComponentGraphicalModel(ySize, xSize, graphicArray);
+        trvComponentGraphicalModel * graphicComponent = new trvComponentGraphicalModel(graphicArray);
         return graphicComponent;
       }},
       {"Health", [](FILE * componentFile) {
@@ -45,7 +45,7 @@ class trvFileParser {
   };
 
   gComponent * loadComponentFromFile(trvIOContainerWorld *, FILE *);
-  gEntity * loadEntityFromFile (trvIOContainerWorld * , FILE *);
+  trvEntity * loadEntityFromFile (trvIOContainerWorld * , FILE *);
   void loadMapFromFile(trvIOContainerWorld *, FILE *);
 };
 

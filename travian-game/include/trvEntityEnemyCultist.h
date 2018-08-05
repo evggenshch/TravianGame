@@ -5,9 +5,9 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_TRVENTITYENEMYCULTIST_H
 #define EVGENIJ_SCHERBAKOV_GAME_TRVENTITYENEMYCULTIST_H
 
-#include <include/gEntity.h>
+#include "trvEntity.h"
 
-class trvEntityEnemyCultist : public gEntity {
+class trvEntityEnemyCultist : public trvEntity {
 
 };
 

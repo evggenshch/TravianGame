@@ -2,7 +2,7 @@
 // Created by evggenshch on 10.07.18.
 //
 
-#include <include/g_rt_timer.h>
+#include <include/gRTTimer.h>
 #include "include/gGraphics.h"
 
 void gGraphics::startGraphics() {  //   +
@@ -75,7 +75,7 @@ void gGraphics::print_int_number(int num, int pos) {
     printw("%i ", num);
 }
 
-void gGraphics::print_stats_rt(g_rt_timer * game_timer, gMap * game_map) {
+void gGraphics::print_stats_rt(gRTTimer * game_timer, gMap * game_map) {
   move(game_map->get_size_y() + 5, 0);
   printw("Steps remaining:  %lf", game_timer->get_g_time());;
 }

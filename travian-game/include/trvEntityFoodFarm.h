@@ -6,8 +6,9 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVENTITYFOODFARM_H
 
 #include <include/gEntity.h>
+#include "trvEntity.h"
 
-class trvEntityFoodFarm : public gEntity {
+class trvEntityFoodFarm : public trvEntity {
 
 };
 

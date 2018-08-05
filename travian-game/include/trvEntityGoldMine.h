@@ -6,8 +6,9 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVENTITYGOLDMINE_H
 
 #include <include/gEntity.h>
+#include "trvEntity.h"
 
-class trvEntityGoldMine : public gEntity {
+class trvEntityGoldMine : public trvEntity {
 
 };
 

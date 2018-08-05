@@ -10,3 +10,6 @@ void trvComponentHealth::setValue(int value) {
   trvComponentHealth::value = value;
 }
 trvComponentHealth::trvComponentHealth(int value) : value(value) {}
+trvComponentHealth::~trvComponentHealth() {
+
+}

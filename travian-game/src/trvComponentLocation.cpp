@@ -3,3 +3,19 @@
 //
 
 #include "../include/trvComponentLocation.h"
+trvComponentLocation::trvComponentLocation(int x) : x(x) {}
+int trvComponentLocation::getX() const {
+  return x;
+}
+void trvComponentLocation::setX(int x) {
+  trvComponentLocation::x = x;
+}
+int trvComponentLocation::getY() const {
+  return y;
+}
+void trvComponentLocation::setY(int y) {
+  trvComponentLocation::y = y;
+}
+trvComponentLocation::~trvComponentLocation() {
+
+}

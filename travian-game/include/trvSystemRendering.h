@@ -9,9 +9,9 @@
 
 class trvSystemRendering {
  public:
-  static void drawGameObject(gEntity *);
+  static void drawGameObject(trvEntity *);
   static void drawGameMap(trvIOContainerWorld * gameWorld);
-  static void update_rt(world * g_w, g_rt_timer * game_time);
+  static void update_rt(world * g_w, gRTTimer * game_time);
   static void win_rt_report(world * g_w, g_results_collector <g_core::rt_time > * game_results);
 };
 

@@ -6,9 +6,9 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTINTERACTIONOPTIONS_H
 #include <string>
 
-class trvComponentInteractionOptions {
+/*   class trvComponentInteractionOptions {
  private:
   vector <> ;
-};
+};   */
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTINTERACTIONOPTIONS_H
