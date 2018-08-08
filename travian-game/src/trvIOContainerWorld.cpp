@@ -5,6 +5,12 @@
 #include "../include/trvIOContainerWorld.h"
 #include "../include/trvFileParser.h"
 
+///  +
+
+trvIOContainerWorld::~trvIOContainerWorld () {
+  std::for_each(gameObjects.begin(), gameObjects.end(), [](trvEntity& trvObj) { trvObj.~trvEntity(); });
+}
+
 int trvIOContainerWorld::getYMapSize() const {
   return yMapSize;
 }
@@ -24,29 +30,27 @@ int trvIOContainerWorld::getCurrentGameMode() {
 
 void trvIOContainerWorld::initAncestorObjects() {     ///    TO-DO:  add normal processing of objects' directory with experimental::filesystem
   FILE * objFile;
-  trvFileParser fileParser;
   objFile = fopen("../Maps/MainBuilding.trvm", "r");
-  fileParser.loadEntityFromFile(this, objFile);
+  trvFileParser::loadEntityFromFile(this, objFile);
   fclose(objFile);
   objFile = fopen("../Maps/CultistEnemy.trvm", "r");
-  fileParser.loadEntityFromFile(this, objFile);
+  trvFileParser::loadEntityFromFile(this, objFile);
   fclose(objFile);
   objFile = fopen("../Maps/FoodFarm.trvm", "r");
-  fileParser.loadEntityFromFile(this, objFile);
+  trvFileParser::loadEntityFromFile(this, objFile);
   fclose(objFile);
   objFile = fopen("../Maps/GoldMine.trvm", "r");
-  fileParser.loadEntityFromFile(this, objFile);
+  trvFileParser::loadEntityFromFile(this, objFile);
   fclose(objFile);
   objFile = fopen("../Maps/MachineGunPoint.trvm", "r");
-  fileParser.loadEntityFromFile(this, objFile);
+  trvFileParser::loadEntityFromFile(this, objFile);
   fclose(objFile);
 }
 
 void trvIOContainerWorld::initMap() {
   FILE * mapFile;
-  trvFileParser fileParser;
   mapFile = fopen("../Maps/Cadia.trvmp", "r");
-  fileParser.loadMapFromFile(this, mapFile);
+  trvFileParser::loadMapFromFile(this, mapFile);
 }
 
 

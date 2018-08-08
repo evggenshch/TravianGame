@@ -7,7 +7,7 @@
 
 #include "trvComponentGraphicalModel.h"
 class trvEntityActionMenu {
-  trvComponentGraphicalModel k;
+  //    trvComponentGraphicalModel k;
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYACTIONMENU_H

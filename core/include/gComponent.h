@@ -7,8 +7,8 @@
 
 class gComponent {
  public:
-  gComponent();
-  ~gComponent() { delete this; };
+ //   gComponent();
+ //   ~gComponent();
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_G_COMPONENT_H

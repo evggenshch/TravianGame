@@ -5,9 +5,16 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMATERIAL_H
 #define EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMATERIAL_H
 
+///     +
+
 class trvComponentMaterial {
  private:
-
+    int color;
+ public:
+  trvComponentMaterial(int color);
+  virtual ~trvComponentMaterial();
+  int getColor() const;
+  void setColor(int color);
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMATERIAL_H

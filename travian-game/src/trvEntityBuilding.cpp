@@ -3,3 +3,8 @@
 //
 
 #include "../include/trvEntityBuilding.h"
+
+
+/* trvEntityBuilding::trvEntityBuilding(std::vector <gComponent>) {
+
+} */

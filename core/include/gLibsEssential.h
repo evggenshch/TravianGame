@@ -33,10 +33,11 @@
 #include <typeinfo>
 
 namespace gCore {
-  typedef int tb_time;
-  typedef double rt_time;
+  typedef double timer_t;
   typedef int int_t;
-  typedef double double_t;
+  typedef double float_t;
+
+  const size_t HASH_BASE = 4294967291;
   enum EVENT_CODES {KEY_PRESSED};
   enum GAME_MODES {MENU_MODE, CAMERA_MODE, CONSTRUCTION_MODE, BUILDING_MODE};
 }

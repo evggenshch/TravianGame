@@ -4,10 +4,10 @@
 
 #include "../include/trvSystemCursorMovement.h"
 
-void trvSystemCursorMovement::update(world * g_w) {
+/*    void trvSystemCursorMovement::update(trvIOContainerWorld * g_w) {
   timeout(0);
   int user_key, dy, dx;
-  user_key = g_ui::input_key();
+  user_key = ;
   switch (user_key) {
     case 'w': {
       dy = -1;
@@ -62,4 +62,4 @@ void trvSystemCursorMovement::update(world * g_w) {
     }
   }
   timeout(-1);
-}
+}    */

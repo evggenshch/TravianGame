@@ -11,8 +11,7 @@ void gTile::setForeColor(int foreColor) { this->foreColor = foreColor; }
 void gTile::setBackColor(int backColor) { this->backColor = backColor; }
 void gTile::setSym(char sym) { this->sym = sym; }
 
-int gTile::getX() const { return x; }
-int gTile::getY() const { return y; }
+
 int gTile::getForeColor() const { return foreColor; }
 int gTile::getBackColor() const { return backColor; }
 char gTile::getSym() const { return  sym; }

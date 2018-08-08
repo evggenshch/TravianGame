@@ -9,7 +9,8 @@
 #include "trvEntity.h"
 
 class trvEntityFoodFarm : public trvEntity {
-
+ public:
+  explicit trvEntityFoodFarm(std::vector < std::shared_ptr <gComponent> >);
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYFOODFARM_H

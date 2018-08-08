@@ -10,7 +10,8 @@
 
 class trvEntityMachineGunPoint : public trvEntity {
  public:
-
+    trvEntityMachineGunPoint();
+    trvEntityMachineGunPoint(std::vector < std::shared_ptr <gComponent> >);
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMACHINEGUNPOINT_H

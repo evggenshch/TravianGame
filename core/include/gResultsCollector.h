@@ -7,13 +7,13 @@
 
 #include "gLibsEssential.h"
 
-template <typename T> class g_results_collector {
+template <typename T> class gResultsCollector {
 private:
     std::vector < std::pair <T, std::string> > total_score;
     //  std::string cur_player;
     T  cur_score;
 public:
-    g_results_collector();
+    gResultsCollector();
     std::vector < std::pair <T, std::string> >  get_sorted_total_score();
     void add_player(std::pair <T, std::string>);
     T get_cur_score();

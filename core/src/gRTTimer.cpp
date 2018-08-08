@@ -5,11 +5,11 @@
 #include "include/gRTTimer.h"
 #include <cmath>
 
-bool gRTTimer::change_g_time(g_core::rt_time change_time) {
-  g_core::rt_time cur_g_time = get_g_time();
-  cur_g_time += change_time;
+bool gRTTimer::change_g_time(gCore::timer_t changeTime) {
+  gCore::timer_t cur_g_time = getGTime();
+  cur_g_time += changeTime;
   if(cur_g_time > EPS) {
-    set_g_time(cur_g_time);
+    setGTime(cur_g_time);
     return true;
   }
   return false;

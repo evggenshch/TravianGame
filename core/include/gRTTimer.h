@@ -9,10 +9,10 @@
 
 const double_t  EPS = 0.000001;
 
-class gRTTimer : public gTimer <g_core::rt_time > {
+class gRTTimer : public gTimer <gCore::timer_t > {
 public:
-  gRTTimer(g_core::rt_time g_time) : gTimer <g_core::rt_time> (g_time) {};
-  bool change_g_time(g_core::rt_time);
+  gRTTimer(gCore::timer_t g_time) : gTimer <gCore::timer_t > (g_time) {};
+  bool change_g_time(gCore::timer_t);
 };
 
 

@@ -10,13 +10,12 @@
 template <typename T>
 class gTimer {
 private:
-  T g_time;
+  T gTime;
 public:
-  gTimer(T);
-  ~gTimer();
-  void set_g_time(T);
-  T get_g_time();
- // virtual bool change_g_time(T);
+  gTimer(T gTime);
+  virtual ~gTimer();
+  T getGTime() const;
+  void setGTime(T gTime);
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_G_TIMER_H

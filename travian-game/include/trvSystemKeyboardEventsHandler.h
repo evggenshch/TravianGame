@@ -5,9 +5,10 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMKEYBOARDEVENTSHANDLER_H
 #define EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMKEYBOARDEVENTSHANDLER_H
 
+#include <include/gSystem.h>
 #include "trvIOContainerWorld.h"
 
-class trvSystemKeyboardEventsHandler {
+class trvSystemKeyboardEventsHandler : public gSystem {
  public:
   void update(trvIOContainerWorld * gameWorld);
 };

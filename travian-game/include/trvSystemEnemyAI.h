@@ -5,7 +5,8 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMENEMYAI_H
 #define EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMENEMYAI_H
 
-class trvSystemEnemyAI {
+#include <include/gSystem.h>
+class trvSystemEnemyAI : public gSystem {
 
 };
 

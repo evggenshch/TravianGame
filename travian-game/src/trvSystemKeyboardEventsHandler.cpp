@@ -9,8 +9,9 @@ void trvSystemKeyboardEventsHandler::update(trvIOContainerWorld *gameWorld) {
     case gCore::MENU_MODE: {
 
     }
-    case gCore: {
+    /*   case gCore: {
 
-    }
+    }   */
+    default: break;
   }
 }

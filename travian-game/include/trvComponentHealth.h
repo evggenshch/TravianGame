@@ -6,7 +6,11 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTHEALTH_H
 
 #include <include/gComponent.h>
-class trvComponentHealth : gComponent {
+
+///       +
+
+
+class trvComponentHealth : public gComponent {
  private:
   int value;
  public:

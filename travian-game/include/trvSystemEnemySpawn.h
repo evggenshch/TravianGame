@@ -9,9 +9,9 @@
 #include "include/gTile.h"
 #include "trvIOContainerWorld.h"
 
-class trvSystemEnemySpawn : public g_system  {
+class trvSystemEnemySpawn : public gSystem  {
  public:
-  static void update(world * g_w);
+  static void update(trvIOContainerWorld * gameWorld);
 };
 
 #endif  //  EVGENIJ_SCHERBAKOV_GAME_SPAWN_SYSTEM_H

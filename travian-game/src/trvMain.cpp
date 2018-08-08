@@ -9,10 +9,8 @@
 #include <thread>
 #include <vector>
 #include <string>
-#include "../include/game_rt_loop.h"
 #include "../include/trvIOContainerWorld.h"
 #include "include/gRTTimer.h"
-#include "../include/game_rt_loop.h"
 #include "../include/trvSystemRendering.h"
 #include "../include/trvSystemCursorMovement.h"
 #include "../include/trvSystemEnemySpawn.h"
@@ -21,12 +19,12 @@
 using namespace std::chrono_literals;
 
 int main() {
-    int user_key;
+//    int user_key;
 
    // while (1) {
 
 
-      gGraphics::startGraphics();
+      gGraphics::initGraphics();
     /*  g_ui::print_mes("Start game (y/n)?");
 
       switch (user_key) {
@@ -68,11 +66,11 @@ int main() {
       trvIOContainerWorld trvWorld;
       trvWorld.initAncestorObjects();
       trvWorld.initMap();
-      trvSystemRendering::drawGameMap();
+      trvSystemRendering::drawGameMap(&trvWorld);
       getch();
 
 
-  /*    void game_rt_loop::init_rt_loop(g_results_collector <g_core::rt_time > * game_results) {
+  /*    void game_rt_loop::init_rt_loop(gResultsCollector <g_core::rt_time > * game_results) {
     player user(std::vector <g_cell> (1, g_cell(0, 0, 7, 0, '@', nullptr)));
     char const * map_init = "Maps/map_0.txt";
     trvIOContainerWorld game_world(user, gMap(map_init));
@@ -126,7 +124,7 @@ int main() {
 
 using namespace std::chrono_literals;
 
-void game_rt_loop::init_rt_loop(g_results_collector <g_core::rt_time > * game_results) {
+void game_rt_loop::init_rt_loop(gResultsCollector <g_core::rt_time > * game_results) {
   player user(std::vector <g_cell> (1, g_cell(0, 0, 7, 0, '@', nullptr)));
   char const * map_init = "Maps/map_0.txt";
   world game_world(user, gMap(map_init));
@@ -150,5 +148,5 @@ void game_rt_loop::init_rt_loop(g_results_collector <g_core::rt_time > * game_re
     stats_system::update_rt(&game_world, &game_timer, game_results);
   }
   game_results->change_cur_score(1.0 / static_cast<double > (game_world.get_map().get_tick_per_second()));
-  trvSystemRendering::win_rt_report(&game_world, game_results);    */
-}
+  trvSystemRendering::win_rt_report(&game_world, game_results);
+} */

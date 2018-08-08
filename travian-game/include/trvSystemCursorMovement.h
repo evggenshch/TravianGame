@@ -10,9 +10,9 @@
 #include "include/gGraphics.h"
 #include "trvIOContainerWorld.h"
 
-class trvSystemCursorMovement  {
+class trvSystemCursorMovement : public gSystem  {
  public:
-  static void update(world * g_w);
+  static void update(trvIOContainerWorld * gameWorld);
 };
 
 #endif  //  EVGENIJ_SCHERBAKOV_GAME_MOVEMENT_SYSTEM_H

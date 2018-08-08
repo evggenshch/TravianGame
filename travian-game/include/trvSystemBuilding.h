@@ -5,7 +5,8 @@
 #ifndef EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMBUILDING_H
 #define EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMBUILDING_H
 
-class trvSystemBuilding {
+#include <include/gSystem.h>
+class trvSystemBuilding : public gSystem {
 
 };
 

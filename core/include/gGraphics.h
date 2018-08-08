@@ -7,7 +7,7 @@
 
 #include "gMap.h"
 #include "gTile.h"
-#include "g_results_collector.h"
+#include "gResultsCollector.h"
 #include "gLibsEssential.h"
 #include "gTimer.h"
 #include "gRTTimer.h"
@@ -20,20 +20,19 @@
 
 class gGraphics {
 public:
-    static void startGraphics();
+    static void initGraphics();
     static void drawTile(gTile);
     static void drawMap(gMap &);
     static void drawDialog(gDialog *);
-    static template <typename T> void drawEntity(T * inputEntity);
+    template <typename T> void drawEntity(T * inputEntity);
 
 
     static void print_mes(const char *);
     static void print_int_number (int, int);
     static void print_stats_rt(gRTTimer *, gMap *);
-    static void print_score_tb(g_results_collector <gCore::tb_time > * game_results);
-    static void print_score_rt(g_results_collector <gCore::rt_time > * game_results);
+    static void print_score_rt(gResultsCollector <gCore::timer_t > * game_results);
     //  static void input_message(char [100] *);
-    static void close_g_ui();
+    static void closeGraphics();
 };
 
 

@@ -6,9 +6,14 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVBUILDING_H
 
 #include "trvComponentGraphicalModel.h"
-class trvEntityBuilding {
+#include "trvEntity.h"
+
+class trvEntityBuilding : public trvEntity {
  private:
-  trvComponentGraphicalModel buildingLocation;
+
+ public:
+  explicit trvEntityBuilding(std::vector < std::shared_ptr <gComponent> > input) : trvEntity(input) {};
+  ~trvEntityBuilding();
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVBUILDING_H

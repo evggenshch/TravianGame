@@ -25,10 +25,10 @@ class gEntity {
 private:
     size_t hashCode;
 public:
-    gEntity();
-    ~gEntity() {delete this;};
+    //  virtual gEntity();
+    //  virtual ~gEntity();
     size_t getHashCode();
-    void setHashCode(size_t (*hash_function) <gEntity> = std::hash<gEntity>);
+    //  void setHashCode(size_t (*hash_function) <gEntity> = std::hash<gEntity>);
 };
 
 
