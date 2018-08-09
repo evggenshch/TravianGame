@@ -19,7 +19,7 @@ class gDialog {
   std::string getTitle();
   std::vector <std::string> getOptions();
   std::string getOptionAt(int i);
-  virtual ~gDialog();
+  ~gDialog() {};
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_G_DIALOG_H

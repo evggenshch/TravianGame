@@ -10,7 +10,7 @@
 
 class trvEntityFoodFarm : public trvEntity {
  public:
-  explicit trvEntityFoodFarm(std::vector < std::shared_ptr <gComponent> >);
+  explicit trvEntityFoodFarm(std::vector < std::unique_ptr <gComponent> > input) : trvEntity(std::move(input)) {};
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYFOODFARM_H

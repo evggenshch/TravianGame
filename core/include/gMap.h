@@ -34,7 +34,7 @@ public:
     gMap(std::ifstream);
     gMap(const char *);
     gTile get_g_cell_at(int, int);
-    void set_g_cell_at(int, int, char);
+    void set_g_cell_at(int, int, wchar_t);
     size_t get_size_x();
     size_t get_size_y();
     gCore::timer_t get_bonus_rt_value();

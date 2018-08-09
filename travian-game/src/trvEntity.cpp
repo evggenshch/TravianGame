@@ -17,11 +17,16 @@ void trvEntity::setModel(const trvComponentGraphicalModel &model) {
 }
 trvEntity::trvEntity(const trvComponentLocation &pos, const trvComponentGraphicalModel &model)
     : pos(pos), model(model) {
-
 }
-trvEntity::trvEntity(std::vector < std::unique_ptr <gComponent> > inputComponents) :
-    model(**(std::dynamic_pointer_cast< std::shared_ptr <trvComponentGraphicalModel> > ( std::make_shared <gComponent> (inputComponents[0])))) {
+trvEntity::trvEntity(std::vector < std::unique_ptr <gComponent> > inputComponents) {
+    printf("REACHED CONSTRUCTOR\n");
+    std::shared_ptr <gComponent> modelPtr = std::move(  (inputComponents[0]));
+    std::shared_ptr <trvComponentGraphicalModel> derived = std::dynamic_pointer_cast <trvComponentGraphicalModel> (modelPtr);
+    printf("MOVE OKAY\n");
+    model = *derived;
+    //   model = (**(std::dynamic_pointer_cast< std::shared_ptr <trvComponentGraphicalModel> > (modelPtr)));
+    printf("CAST OKAY?\n");
 }
-trvEntity::~trvEntity() {
-
-}
+//trvEntity::~trvEntity() {
+//}
+//   std::make_unique <gComponent>

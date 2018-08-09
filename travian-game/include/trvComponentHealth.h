@@ -15,7 +15,7 @@ class trvComponentHealth : public gComponent {
   int value;
  public:
   trvComponentHealth(int value);
-  virtual ~trvComponentHealth();
+  ~trvComponentHealth();
   int getValue() const;
   void setValue(int value);
 };

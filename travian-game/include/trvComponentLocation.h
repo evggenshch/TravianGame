@@ -15,7 +15,7 @@ class trvComponentLocation {
   int getX() const;
   void setX(int x);
   trvComponentLocation(int x, int y);
-  virtual ~trvComponentLocation();
+  ~trvComponentLocation();
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTLOCATION_H

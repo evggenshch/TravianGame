@@ -12,7 +12,7 @@ class trvEntityBuilding : public trvEntity {
  private:
 
  public:
-  explicit trvEntityBuilding(std::vector < std::shared_ptr <gComponent> > input) : trvEntity(input) {};
+  explicit trvEntityBuilding(std::vector < std::unique_ptr <gComponent> > input) : trvEntity(std::move(input)) {};
   ~trvEntityBuilding();
 };
 

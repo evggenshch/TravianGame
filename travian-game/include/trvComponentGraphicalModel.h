@@ -17,7 +17,7 @@ class trvComponentGraphicalModel : public gComponent {
     std::vector < std::vector <gTile> > array;
  public:
   trvComponentGraphicalModel(const std::vector<std::vector<gTile>> &array);
-  virtual ~trvComponentGraphicalModel();
+  ~trvComponentGraphicalModel();
   const std::vector<std::vector<gTile>> &getArray() const;
   void setArray(const std::vector<std::vector<gTile>> &array);
 };

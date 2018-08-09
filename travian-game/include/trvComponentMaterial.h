@@ -12,7 +12,7 @@ class trvComponentMaterial {
     int color;
  public:
   trvComponentMaterial(int color);
-  virtual ~trvComponentMaterial();
+  ~trvComponentMaterial();
   int getColor() const;
   void setColor(int color);
 };

@@ -6,26 +6,30 @@
 
 /**  Memory allocation starts here  **/
 
+
 std::shared_ptr <trvEntity> trvFileParser::loadEntityFromFile(trvIOContainerWorld * gameWorld, FILE * entityFile) {
   char className[100];
   std::vector < std::unique_ptr <gComponent> > entityComponents;
   fscanf(entityFile, "%s", className);
   while(!feof(entityFile)) {
      auto currentComponent = loadComponentFromFile(gameWorld, entityFile);
-     entityComponents.push_back(currentComponent);
+     entityComponents.push_back(std::move(currentComponent));
   }
-  return gameWorld->initObjects.find(std::string(className))->second(entityComponents);
+  fclose(entityFile);
+  printf("BULLSHIT\n");
+  return gameWorld->initObjects.find(std::string(className))->second(std::move(entityComponents));
 }
 
 std::unique_ptr <gComponent> trvFileParser::loadComponentFromFile(trvIOContainerWorld * gameWorld, FILE * componentFile) {
   char componentName[100];
   fscanf(componentFile, "%s", componentName);
-  return readComponent.find(std::string(componentName))->second(componentFile);
+  printf("I M HER! %s \n", componentName);
+  return gameWorld->readComponent.find(std::string(componentName))->second(componentFile);
 }
 
 void trvFileParser::loadMapFromFile(trvIOContainerWorld * gameWorld, FILE * mapFile) {
   int ySize, xSize;
-  fscanf(mapFile, "%i %i", &ySize, &xSize);
+  fscanf(mapFile, "%i %i\n", &ySize, &xSize);
   gameWorld->setYMapSize(ySize);
   gameWorld->setXMapSize(xSize);
   //   char className[100];

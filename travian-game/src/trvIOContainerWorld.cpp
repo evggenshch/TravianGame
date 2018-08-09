@@ -2,13 +2,16 @@
 // Created by evggenshch on 18.07.18.
 //
 
-#include "../include/trvIOContainerWorld.h"
+
 #include "../include/trvFileParser.h"
+#include "../include/trvIOContainerWorld.h"
 
 ///  +
 
+
+
 trvIOContainerWorld::~trvIOContainerWorld () {
-  std::for_each(gameObjects.begin(), gameObjects.end(), [](trvEntity& trvObj) { trvObj.~trvEntity(); });
+  std::for_each(gameObjects.begin(), gameObjects.end(), []( std::pair <size_t, trvEntity> trvObj) { trvObj.second.~trvEntity(); });
 }
 
 int trvIOContainerWorld::getYMapSize() const {
@@ -32,19 +35,14 @@ void trvIOContainerWorld::initAncestorObjects() {     ///    TO-DO:  add normal 
   FILE * objFile;
   objFile = fopen("../Maps/MainBuilding.trvm", "r");
   trvFileParser::loadEntityFromFile(this, objFile);
-  fclose(objFile);
   objFile = fopen("../Maps/CultistEnemy.trvm", "r");
   trvFileParser::loadEntityFromFile(this, objFile);
-  fclose(objFile);
   objFile = fopen("../Maps/FoodFarm.trvm", "r");
   trvFileParser::loadEntityFromFile(this, objFile);
-  fclose(objFile);
   objFile = fopen("../Maps/GoldMine.trvm", "r");
   trvFileParser::loadEntityFromFile(this, objFile);
-  fclose(objFile);
   objFile = fopen("../Maps/MachineGunPoint.trvm", "r");
   trvFileParser::loadEntityFromFile(this, objFile);
-  fclose(objFile);
 }
 
 void trvIOContainerWorld::initMap() {

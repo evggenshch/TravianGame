@@ -19,16 +19,16 @@ class gEntity;
 class gTile : public gPoint {
 private:
     int foreColor, backColor;
-    char sym;
+    wchar_t sym;
 public:
-    gTile(int fore_color = 7, int back_color = 0, char sym = '.');
-    gTile(int, int, int, int, char);
+    gTile(int fore_color = 7, int back_color = 0, wchar_t sym = '.');
+    gTile(int, int, int, int, wchar_t);
     void setForeColor (int);
     void setBackColor (int);
-    void setSym (char);
+    void setSym (wchar_t);
     int getForeColor() const;
     int getBackColor() const;
-    char getSym() const;
+    wchar_t getSym() const;
 };
 
 

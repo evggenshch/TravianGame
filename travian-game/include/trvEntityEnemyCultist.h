@@ -9,7 +9,7 @@
 
 class trvEntityEnemyCultist : public trvEntity {
  public:
-  explicit trvEntityEnemyCultist(std::vector < std::shared_ptr <gComponent> > input) : trvEntity(input) {};
+  explicit trvEntityEnemyCultist(std::vector < std::unique_ptr <gComponent> > input) : trvEntity(std::move(input)) {};
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYENEMYCULTIST_H

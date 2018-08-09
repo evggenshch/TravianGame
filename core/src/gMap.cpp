@@ -17,7 +17,7 @@ gTile gMap::get_g_cell_at(int x, int y) {
     return field[x][y];
 }
 
-void gMap::set_g_cell_at(int x, int y, char sym) {
+void gMap::set_g_cell_at(int x, int y, wchar_t sym) {
   field[x][y].setSym(sym);
 }
 

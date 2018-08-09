@@ -11,7 +11,7 @@
 class trvEntityGoldMine : public trvEntity {
  public:
     trvEntityGoldMine();
-    trvEntityGoldMine(std::vector < std::shared_ptr <gComponent> >);
+    trvEntityGoldMine(std::vector < std::unique_ptr <gComponent> > input) : trvEntity(std::move(input)) {};
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYGOLDMINE_H

@@ -5,6 +5,9 @@
 #ifndef EVGENIJ_SCHERBAKOV_TRVIOCONTAINERWORLD_H
 #define EVGENIJ_SCHERBAKOV_TRVIOCONTAINERWORLD_H
 
+
+
+
 //   #include "../include/"
 #include <include/gComponent.h>
 #include "include/gMap.h"
@@ -13,6 +16,9 @@
 #include "trvEntityEnemyCultist.h"
 #include "trvEntityFoodFarm.h"
 #include "trvEntityGoldMine.h"
+
+#include <inttypes.h>
+
 
 //   #include <experimental/filesystem>
 
@@ -26,7 +32,9 @@
 typedef std::vector <std::unique_ptr <gComponent> > entityConstructorArg;
 
 template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg entityParams) {
-  auto returnPtr = std::make_unique <T> (T(entityParams));
+  printf("HA!\n");
+  auto returnPtr = std::make_unique <T> (T(std::move(entityParams)));
+  printf("DUCK!\n");
   return returnPtr;
 }
 
@@ -63,13 +71,50 @@ class trvIOContainerWorld {
   std::map <std::string, trvEntity> ancestorObjects;
   std::unordered_multimap <size_t, trvEntity> gameObjects;  //  multimap?
 
+  std::map <std::string, std::function < std::unique_ptr <gComponent> (FILE *)  > > readComponent = {
+      {std::string("GraphicMap"), [](FILE * componentFile) {
+        int ySize, xSize;
+        int curInt;
+        wchar_t curChar;
+        fscanf(componentFile, "%i %i\n", &ySize, &xSize);
+        printf("%i %i\n", ySize, xSize);
+        std::vector < std::vector <gTile> > graphicArray(ySize, std::vector <gTile> (xSize, gTile()));
+        for(size_t i = 0; i < static_cast<size_t > (ySize); i++) {
+          for(size_t j = 0; j < static_cast<size_t > (xSize); j++) {
+            fscanf(componentFile, "%lc", &curChar);
+            graphicArray[i][j].setSym(curChar);
+          }
+          fscanf(componentFile, "\n");
+        }
+        for(size_t i = 0; i < static_cast<size_t > (ySize); i++) {
+          for(size_t j = 0; j < static_cast<size_t > (xSize); j++) {
+            fscanf(componentFile, "%i", &curInt);
+            graphicArray[i][j].setForeColor(curInt);
+            fscanf(componentFile, "%i", &curInt);
+            graphicArray[i][j].setBackColor(curInt);
+          }
+        }
+        fscanf(componentFile, "\n");
+        auto graphicComponent = std::make_unique <trvComponentGraphicalModel> (trvComponentGraphicalModel(graphicArray));
+        return graphicComponent;
+      }},
+      {std::string("Health"), [](FILE * componentFile) {
+        int healthValue = 0;
+        printf("I M HERE! \n");
+        fscanf(componentFile, "%i\n", &healthValue);
+        printf("Value: %i\n", healthValue);
+        auto healthComponent = std::make_unique <trvComponentHealth> (trvComponentHealth(healthValue));
+        return healthComponent;
+      }}
+//      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},
+  };
 
   ///  Structure for runtime determination of objects' properties
 
   std::map <std::string, std::function< std::unique_ptr <trvEntity> (entityConstructorArg)> > initObjects = {
       {"MainBuildingInit", entityInit<trvEntityMainBuilding>},
       {"MachineGunPointInit", entityInit<trvEntityMachineGunPoint>},
-      {"EnemyCultistInit", entityInit<trvEntityEnemyCultist>},
+      {"CultistEnemyInit", entityInit<trvEntityEnemyCultist>},
       {"FoodFarmInit", entityInit<trvEntityFoodFarm>},
       {"GoldMineInit", entityInit<trvEntityGoldMine>}
 //      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},

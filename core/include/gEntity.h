@@ -25,6 +25,7 @@ class gEntity {
 private:
     size_t hashCode;
 public:
+    ~gEntity() {};
     //  virtual gEntity();
     //  virtual ~gEntity();
     size_t getHashCode();

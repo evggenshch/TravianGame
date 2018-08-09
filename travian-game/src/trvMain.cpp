@@ -22,7 +22,7 @@ int main() {
 //    int user_key;
 
    // while (1) {
-
+      std::setlocale(LC_ALL, "en_US.UTF-8");
 
       gGraphics::initGraphics();
     /*  g_ui::print_mes("Start game (y/n)?");
@@ -66,7 +66,7 @@ int main() {
       trvIOContainerWorld trvWorld;
       trvWorld.initAncestorObjects();
       trvWorld.initMap();
-      trvSystemRendering::drawGameMap(&trvWorld);
+//      trvSystemRendering::drawGameMap(&trvWorld);
       getch();
 
 

@@ -9,7 +9,7 @@
 class trvEntityMainBuilding : public trvEntity {
  public:
   trvEntityMainBuilding();
-  trvEntityMainBuilding(std::vector < std::shared_ptr <gComponent> >);
+  trvEntityMainBuilding(std::vector < std::unique_ptr <gComponent> > input) : trvEntity(std::move(input)) {};
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMAINBUILDING_H

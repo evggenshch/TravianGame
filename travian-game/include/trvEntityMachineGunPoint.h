@@ -11,7 +11,7 @@
 class trvEntityMachineGunPoint : public trvEntity {
  public:
     trvEntityMachineGunPoint();
-    trvEntityMachineGunPoint(std::vector < std::shared_ptr <gComponent> >);
+    trvEntityMachineGunPoint(std::vector < std::unique_ptr <gComponent> > input) : trvEntity(std::move(input)) {};
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYMACHINEGUNPOINT_H
