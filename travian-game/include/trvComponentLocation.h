@@ -6,7 +6,9 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVCOMPONENTLOCATION_H
 
 #include <initializer_list>
-class trvComponentLocation {
+#include <include/gComponent.h>
+
+class trvComponentLocation : public gComponent {
  private:
   int x, y;
  public:

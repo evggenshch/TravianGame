@@ -18,7 +18,7 @@ class trvEntity : public gEntity {
   trvEntity(const trvComponentLocation &pos, const trvComponentGraphicalModel &model);
   trvEntity(std::vector <std::unique_ptr <gComponent>>);
   trvEntity();
-  ~trvEntity() {};
+  virtual ~trvEntity() {};
   const trvComponentLocation &getPos() const;
   const trvComponentGraphicalModel &getModel() const;
   void setPos(const trvComponentLocation &pos);

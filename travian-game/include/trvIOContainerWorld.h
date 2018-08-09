@@ -28,18 +28,18 @@
 ///     Objects of the same type have the same hash in multimap
 
 
-
 typedef std::vector <std::unique_ptr <gComponent> > entityConstructorArg;
+typedef std::unique_ptr <trvEntity> entityCopyArg;
 
-template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg entityParams) {
-  printf("HA!\n");
-  auto returnPtr = std::make_unique <T> (T(std::move(entityParams)));
-  printf("DUCK!\n");
-  return returnPtr;
-}
+template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg);
+//  template <typename T> std::shared_ptr<T> entityCopy(std::string);
 
-template <typename T> std::shared_ptr<T> entityCopy(std::unique_ptr<T> entityToCopy) {
-  auto entityCopy = std::make_shared<T> (entityToCopy);
+template <typename T> std::shared_ptr<T> entityCopy(std::string entityToCopyName, std::map <std::string, std::shared_ptr <trvEntity> > * prototypeObjs) {
+
+  //   std::shared_ptr <gComponent> modelPtr = std::move(  (inputComponents[0]));
+  std::shared_ptr <T> derived = std::dynamic_pointer_cast <T> (prototypeObjs->find(entityToCopyName)->second);
+  auto entityCopy = std::make_shared <T> (*derived);
+//  auto entityCopy = std::make_shared <T> (  std::dynamic_pointer_cast <T>  *(prototypeObjs->find(entityToCopyName)->second));
   return entityCopy;
 }
 
@@ -51,7 +51,6 @@ class trvIOContainerWorld {
   //   bool entitiesInitiated = false;
 
   ///      загрузка порождающих и копирующих конструкторов в map
-
 
 
   int currentGameMode = gCore::MENU_MODE;
@@ -68,7 +67,7 @@ class trvIOContainerWorld {
   ~trvIOContainerWorld();
 
   //      {"MainBuildingInit", []  (entityConstructorArg entityParams) { return new trvEntityMainBuilding(); }},
-  std::map <std::string, trvEntity> ancestorObjects;
+  std::map <std::string, std::shared_ptr <trvEntity> > ancestorObjects;
   std::unordered_multimap <size_t, trvEntity> gameObjects;  //  multimap?
 
   std::map <std::string, std::function < std::unique_ptr <gComponent> (FILE *)  > > readComponent = {
@@ -100,23 +99,28 @@ class trvIOContainerWorld {
       }},
       {std::string("Health"), [](FILE * componentFile) {
         int healthValue = 0;
-        printf("I M HERE! \n");
         fscanf(componentFile, "%i\n", &healthValue);
-        printf("Value: %i\n", healthValue);
         auto healthComponent = std::make_unique <trvComponentHealth> (trvComponentHealth(healthValue));
         return healthComponent;
-      }}
+      }},
+      {std::string("Location"), [](FILE * componentFile) {
+        int posY, posX;
+        fscanf(componentFile, "%i %i\n", &posY, &posX);
+        auto locationComponent = std::make_unique <trvComponentLocation> (trvComponentLocation(posX, posY));
+        return locationComponent;
+       }
+      }
 //      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},
   };
 
   ///  Structure for runtime determination of objects' properties
 
   std::map <std::string, std::function< std::unique_ptr <trvEntity> (entityConstructorArg)> > initObjects = {
-      {"MainBuildingInit", entityInit<trvEntityMainBuilding>},
-      {"MachineGunPointInit", entityInit<trvEntityMachineGunPoint>},
-      {"CultistEnemyInit", entityInit<trvEntityEnemyCultist>},
-      {"FoodFarmInit", entityInit<trvEntityFoodFarm>},
-      {"GoldMineInit", entityInit<trvEntityGoldMine>}
+      {"MainBuilding", entityInit<trvEntityMainBuilding>},
+      {"MachineGunPoint", entityInit<trvEntityMachineGunPoint>},
+      {"CultistEnemy", entityInit<trvEntityEnemyCultist>},
+      {"FoodFarm", entityInit<trvEntityFoodFarm>},
+      {"GoldMine", entityInit<trvEntityGoldMine>}
 //      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},
 //      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},
 //      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},,
@@ -126,9 +130,13 @@ class trvIOContainerWorld {
   ///  Structure for making object copies
 
 
-//   std::map <std::string, std::function<trvEntity*(trvEntity * )> > copyObjects = {
-//      {"MainBuildingCopy", entityCopy<trvEntityMainBuilding>}
-//   };
+   std::map <std::string, std::function< std::shared_ptr <trvEntity> ( std::string, std::map <std::string, std::shared_ptr <trvEntity> > * )> > copyObjects = {
+      {"MainBuilding", entityCopy<trvEntityMainBuilding>},
+      {"MachineGunPoint", entityCopy<trvEntityMachineGunPoint>},
+      {"CultistEnemy", entityCopy<trvEntityEnemyCultist>},
+      {"FoodFarm", entityCopy<trvEntityFoodFarm>},
+      {"GoldMine", entityCopy<trvEntityGoldMine>}
+     };
 
   //    std::map <> =
   /*     std::map <std::string, std::function > initComponents = {
@@ -149,5 +157,17 @@ class trvIOContainerWorld {
   int getXMapSize() const;
   void setXMapSize(int xMapSize);
 };
+
+template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg entityParams) {
+  auto returnPtr = std::make_unique <T> (T(std::move(entityParams)));
+  return returnPtr;
+}
+
+
+
+/*  template <typename T> std::shared_ptr<T> entityCopy(std::unique_ptr<T> entityToCopy) {
+  auto entityCopy = std::make_shared<T> (*entityToCopy);
+  return entityCopy;
+}  */
 
 #endif  //  EVGENIJ_SCHERBAKOV_GAME_WORLD_H

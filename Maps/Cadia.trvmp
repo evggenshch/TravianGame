@@ -1,10 +1,15 @@
 100 100
-MainBuilding 50 50
-ResourceDomain Gold 3 10 60 60
+MainBuildingCopy
+Location
+50 50
+ResourceDomain 
+Gold 
+3 10 60 60
   ▓▓▓▓▓  
   ▓▓▓▓▓  
  ▓▓▓▓▓▓▓ 
-ResourceDomain Food 3 5 40 40
+ResourceDomain 
+Food 3 5 40 40
 ▒▒▒▒▒
 ▒▒▒▒▒
 ▒▒▒▒▒

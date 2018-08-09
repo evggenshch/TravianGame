@@ -34,15 +34,15 @@ int trvIOContainerWorld::getCurrentGameMode() {
 void trvIOContainerWorld::initAncestorObjects() {     ///    TO-DO:  add normal processing of objects' directory with experimental::filesystem
   FILE * objFile;
   objFile = fopen("../Maps/MainBuilding.trvm", "r");
-  trvFileParser::loadEntityFromFile(this, objFile);
+  this->ancestorObjects.insert(std::make_pair("MainBuilding", trvFileParser::loadEntityFromFile(this, objFile)));
   objFile = fopen("../Maps/CultistEnemy.trvm", "r");
-  trvFileParser::loadEntityFromFile(this, objFile);
+  this->ancestorObjects.insert(std::make_pair("CultistEnemy", trvFileParser::loadEntityFromFile(this, objFile)));
   objFile = fopen("../Maps/FoodFarm.trvm", "r");
-  trvFileParser::loadEntityFromFile(this, objFile);
+  this->ancestorObjects.insert(std::make_pair("FoodFarm", trvFileParser::loadEntityFromFile(this, objFile)));
   objFile = fopen("../Maps/GoldMine.trvm", "r");
-  trvFileParser::loadEntityFromFile(this, objFile);
+  this->ancestorObjects.insert(std::make_pair("GoldMine", trvFileParser::loadEntityFromFile(this, objFile)));
   objFile = fopen("../Maps/MachineGunPoint.trvm", "r");
-  trvFileParser::loadEntityFromFile(this, objFile);
+  this->ancestorObjects.insert(std::make_pair("MachineGunPoint", trvFileParser::loadEntityFromFile(this, objFile)));
 }
 
 void trvIOContainerWorld::initMap() {

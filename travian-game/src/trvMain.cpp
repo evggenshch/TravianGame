@@ -25,6 +25,10 @@ int main() {
       std::setlocale(LC_ALL, "en_US.UTF-8");
 
       gGraphics::initGraphics();
+
+      wchar_t  a = 'a';
+
+      mvprintw(1, 1, "%lc", a);
     /*  g_ui::print_mes("Start game (y/n)?");
 
       switch (user_key) {
