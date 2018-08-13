@@ -10,7 +10,7 @@
 
 class trvSystemRendering : public gSystem {
  public:
-  static void drawGameObject(std::pair <size_t, trvEntity>);
+  static void drawGameObject(std::pair <std::string, std::shared_ptr <trvEntity> >);
   static void drawGameMap(trvIOContainerWorld * gameWorld);
   static void update_rt(trvIOContainerWorld * gameWorld, gRTTimer * game_time);
   static void win_rt_report(trvIOContainerWorld * gameWorld, gResultsCollector < double > * game_results);

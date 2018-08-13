@@ -11,7 +11,7 @@
 
 
 trvIOContainerWorld::~trvIOContainerWorld () {
-  std::for_each(gameObjects.begin(), gameObjects.end(), []( std::pair <size_t, trvEntity> trvObj) { trvObj.second.~trvEntity(); });
+  std::for_each(gameObjects.begin(), gameObjects.end(), []( std::pair <std::string, std::shared_ptr <trvEntity> > trvObj) { (*trvObj.second).~trvEntity(); });
 }
 
 int trvIOContainerWorld::getYMapSize() const {

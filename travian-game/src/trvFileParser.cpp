@@ -27,14 +27,26 @@ std::unique_ptr <gComponent> trvFileParser::loadComponentFromFile(trvIOContainer
 
 void trvFileParser::loadMapFromFile(trvIOContainerWorld * gameWorld, FILE * mapFile) {
   int ySize, xSize;
+  gameWorld->initAncestorObjects();
   fscanf(mapFile, "%i %i\n", &ySize, &xSize);
   gameWorld->setYMapSize(ySize);
   gameWorld->setXMapSize(xSize);
-  char className[100];
+///  std::map <std::string, std::shared_ptr <trvEntity> > testObjects = { {"Sample", nullptr}  };
   while(!feof(mapFile)) {
+
+    char className[100];
     fscanf(mapFile, "%s", className);
-   // gameWorld->copyObjects.find(std::string(className))->second(gameWorld->ancestorObjects.find(className));
-   // gameWorld->gameObjects.insert(std::pair <objToInsert->get_hash(),  objToInsert> );
+    std::string stringName(className);
+    std::shared_ptr <trvEntity> newObj = gameWorld->copyObjects.find(stringName)->second(stringName, &gameWorld->ancestorObjects);
+
+    auto gPtr = loadComponentFromFile(gameWorld, mapFile);
+
+    (*newObj).setPos(std::move(gPtr));
+
+    gameWorld->gameObjects.insert(std::pair <std::string, std::shared_ptr <trvEntity> >
+    (stringName, std::move(newObj)));
   }
   fclose(mapFile);
 }
+
+  // shared_ptr   = gameWorld->copyObjects.find(std::string(className))->second(std::string(className), gameWorld->ancestorObjects);

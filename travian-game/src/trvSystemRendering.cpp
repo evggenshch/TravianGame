@@ -4,13 +4,13 @@
 
 #include "../include/trvSystemRendering.h"
 
-void trvSystemRendering::drawGameObject(std::pair <size_t, trvEntity> inputNode) {
-  trvEntity gameObject = inputNode.second;
+void trvSystemRendering::drawGameObject(std::pair <std::string, std::shared_ptr <trvEntity> > inputNode) {
+  trvEntity gameObject = *inputNode.second;
   for(size_t i = 0; i < gameObject.getModel().getArray().size(); i++) {
     for(size_t j = 0; j < gameObject.getModel().getArray()[i].size(); j++) {
       init_pair(1, gameObject.getModel().getArray()[i][j].getForeColor(), gameObject.getModel().getArray()[i][j].getBackColor());
       attron(COLOR_PAIR(1));
-      mvprintw(gameObject.getPos().getY(), gameObject.getPos().getX(), "%c", gameObject.getModel().getArray()[i][j].getSym());
+      mvprintw(gameObject.getPos().getY(), gameObject.getPos().getX(), "%lc", gameObject.getModel().getArray()[i][j].getSym());
       attroff(COLOR_PAIR(1));
     }
   }

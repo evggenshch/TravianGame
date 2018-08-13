@@ -26,9 +26,9 @@ int main() {
 
       gGraphics::initGraphics();
 
-      wchar_t  a = 'a';
+     // wchar_t  a = 'a';
 
-      mvprintw(1, 1, "%lc", a);
+     // mvprintw(1, 1, "%lc", a);
     /*  g_ui::print_mes("Start game (y/n)?");
 
       switch (user_key) {
@@ -68,9 +68,9 @@ int main() {
 
 
       trvIOContainerWorld trvWorld;
-      trvWorld.initAncestorObjects();
+  //    trvWorld.initAncestorObjects();
       trvWorld.initMap();
-//      trvSystemRendering::drawGameMap(&trvWorld);
+      trvSystemRendering::drawGameMap(&trvWorld);
       getch();
 
 

@@ -23,6 +23,7 @@ private:
 public:
     gTile(int fore_color = 7, int back_color = 0, wchar_t sym = '.');
     gTile(int, int, int, int, wchar_t);
+    ~gTile() {};
     void setForeColor (int);
     void setBackColor (int);
     void setSym (wchar_t);

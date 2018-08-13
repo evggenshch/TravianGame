@@ -9,6 +9,12 @@ const trvComponentLocation &trvEntity::getPos() const {
 void trvEntity::setPos(const trvComponentLocation &pos) {
   trvEntity::pos = pos;
 }
+void trvEntity::setPos(std::unique_ptr <gComponent> inputPos) {
+  //  std::shared_ptr <trvComponentLocation> posPtr = std::move (inputPos);
+  std::shared_ptr <gComponent> newGPtr = std::move(  (inputPos));
+  std::shared_ptr <trvComponentLocation> posPtr = std::dynamic_pointer_cast <trvComponentLocation> (newGPtr);
+  pos = *posPtr;
+}
 const trvComponentGraphicalModel &trvEntity::getModel() const {
   return model;
 }
@@ -20,7 +26,7 @@ trvEntity::trvEntity(const trvComponentLocation &pos, const trvComponentGraphica
 }
 trvEntity::trvEntity(std::vector < std::unique_ptr <gComponent> > inputComponents) {
     std::shared_ptr <gComponent> modelPtr = std::move(  (inputComponents[0]));
-    std::shared_ptr <trvComponentGraphicalModel> derived = std::dynamic_pointer_cast <trvComponentGraphicalModel> (modelPtr);;
+    std::shared_ptr <trvComponentGraphicalModel> derived = std::dynamic_pointer_cast <trvComponentGraphicalModel> (modelPtr);
     model = *derived;
     //   model = (**(std::dynamic_pointer_cast< std::shared_ptr <trvComponentGraphicalModel> > (modelPtr)));
 }

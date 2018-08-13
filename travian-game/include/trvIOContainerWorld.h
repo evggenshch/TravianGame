@@ -33,15 +33,20 @@ typedef std::unique_ptr <trvEntity> entityCopyArg;
 
 template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg);
 //  template <typename T> std::shared_ptr<T> entityCopy(std::string);
+/* void  template <typename T> std::shared_ptr<T>  entityCopy (std::string, std::map <std::string, std::shared_ptr <trvEntity> > *  ); */
 
-template <typename T> std::shared_ptr<T> entityCopy(std::string entityToCopyName, std::map <std::string, std::shared_ptr <trvEntity> > * prototypeObjs) {
 
-  //   std::shared_ptr <gComponent> modelPtr = std::move(  (inputComponents[0]));
-  std::shared_ptr <T> derived = std::dynamic_pointer_cast <T> (prototypeObjs->find(entityToCopyName)->second);
-  auto entityCopy = std::make_shared <T> (*derived);
-//  auto entityCopy = std::make_shared <T> (  std::dynamic_pointer_cast <T>  *(prototypeObjs->find(entityToCopyName)->second));
-  return entityCopy;
-}
+    template <typename T> std::shared_ptr<T> entityCopy(std::string entityToCopyName, std::map <std::string, std::shared_ptr <trvEntity> > * prototypeObjs) {
+
+  ///   std::shared_ptr <gComponent> modelPtr = std::move(  (inputComponents[0]));
+   std::shared_ptr <T> derived = std::dynamic_pointer_cast <T> (prototypeObjs->find(entityToCopyName)->second);
+   auto entityCopy = std::make_shared <T> (*derived);
+   //  auto entityCopy = std::make_shared <T> (  std::dynamic_pointer_cast <T>  *(prototypeObjs->find(entityToCopyName)->second));
+   //  std::shared_ptr <T> entityCopy;
+   return entityCopy;
+    }
+
+
 
 class trvIOContainerWorld {
  private:
@@ -67,8 +72,8 @@ class trvIOContainerWorld {
   ~trvIOContainerWorld();
 
   //      {"MainBuildingInit", []  (entityConstructorArg entityParams) { return new trvEntityMainBuilding(); }},
-  std::map <std::string, std::shared_ptr <trvEntity> > ancestorObjects;
-  std::unordered_multimap <size_t, trvEntity> gameObjects;  //  multimap?
+  std::map <std::string, std::shared_ptr <trvEntity> > ancestorObjects { {"Sample", nullptr}  };
+  std::unordered_multimap <std::string, std::shared_ptr <trvEntity> > gameObjects;  //  multimap?
 
   std::map <std::string, std::function < std::unique_ptr <gComponent> (FILE *)  > > readComponent = {
       {std::string("GraphicMap"), [](FILE * componentFile) {
@@ -76,7 +81,6 @@ class trvIOContainerWorld {
         int curInt;
         wchar_t curChar;
         fscanf(componentFile, "%i %i\n", &ySize, &xSize);
-        printf("%i %i\n", ySize, xSize);
         std::vector < std::vector <gTile> > graphicArray(ySize, std::vector <gTile> (xSize, gTile()));
         for(size_t i = 0; i < static_cast<size_t > (ySize); i++) {
           for(size_t j = 0; j < static_cast<size_t > (xSize); j++) {
@@ -122,20 +126,21 @@ class trvIOContainerWorld {
       {"FoodFarm", entityInit<trvEntityFoodFarm>},
       {"GoldMine", entityInit<trvEntityGoldMine>}
 //      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},
-//      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},
-//      {"MachineGunPointInit", [] (entityConstructorArg entityParams) {}},,
   };
 
 
   ///  Structure for making object copies
 
 
-   std::map <std::string, std::function< std::shared_ptr <trvEntity> ( std::string, std::map <std::string, std::shared_ptr <trvEntity> > * )> > copyObjects = {
-      {"MainBuilding", entityCopy<trvEntityMainBuilding>},
-      {"MachineGunPoint", entityCopy<trvEntityMachineGunPoint>},
-      {"CultistEnemy", entityCopy<trvEntityEnemyCultist>},
-      {"FoodFarm", entityCopy<trvEntityFoodFarm>},
-      {"GoldMine", entityCopy<trvEntityGoldMine>}
+   std::map <std::string, std::function<  std::shared_ptr <trvEntity> (std::string, std::map <std::string, std::shared_ptr <trvEntity> > *)> > copyObjects = {
+      {"MainBuilding", entityCopy <trvEntityMainBuilding>},
+      {"MachineGunPoint", entityCopy <trvEntityMachineGunPoint>},
+      {"CultistEnemy", entityCopy <trvEntityEnemyCultist>},
+      {"FoodFarm", entityCopy <trvEntityFoodFarm> },
+      {"GoldMine", entityCopy <trvEntityGoldMine> }
+      /* {"MainBuilding", []() {
+         return 0;
+       }}  */
      };
 
   //    std::map <> =
@@ -163,7 +168,16 @@ template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg entityP
   return returnPtr;
 }
 
+/* void   template <typename T> std::shared_ptr<T>  entityCopy(std::string entityToCopyName, std::map <std::string, std::shared_ptr <trvEntity> > * prototypeObjs ) {
+ */
 
+  ///   std::shared_ptr <gComponent> modelPtr = std::move(  (inputComponents[0]));
+ //  std::shared_ptr <T> derived = std::dynamic_pointer_cast <T> (prototypeObjs->find(entityToCopyName)->second);
+ //  auto entityCopy = std::make_shared <T> (*derived);
+///  auto entityCopy = std::make_shared <T> (  std::dynamic_pointer_cast <T>  *(prototypeObjs->find(entityToCopyName)->second));
+ // std::shared_ptr <T> entityCopy;
+ // return entityCopy;
+//  }
 
 /*  template <typename T> std::shared_ptr<T> entityCopy(std::unique_ptr<T> entityToCopy) {
   auto entityCopy = std::make_shared<T> (*entityToCopy);
