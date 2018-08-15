@@ -12,7 +12,7 @@
 
 class trvSystemCursorMovement : public gSystem  {
  public:
-  static void update(trvIOContainerWorld * gameWorld);
+  static void update(trvIOContainerWorld * gameWorld, char);
 };
 
 #endif  //  EVGENIJ_SCHERBAKOV_GAME_MOVEMENT_SYSTEM_H

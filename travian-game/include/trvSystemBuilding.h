@@ -6,8 +6,11 @@
 #define EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMBUILDING_H
 
 #include <include/gSystem.h>
-class trvSystemBuilding : public gSystem {
+#include "trvIOContainerWorld.h"
 
+class trvSystemBuilding : public gSystem {
+ public:
+  static void update(trvIOContainerWorld *, int);
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMBUILDING_H

@@ -6,6 +6,7 @@
 #include "../include/trvFileParser.h"
 #include "../include/trvIOContainerWorld.h"
 
+
 ///  +
 
 
@@ -27,8 +28,9 @@ void trvIOContainerWorld::setXMapSize(int xMapSize) {
   trvIOContainerWorld::xMapSize = xMapSize;
 }
 
-int trvIOContainerWorld::getCurrentGameMode() {
-  return currentGameMode;
+
+gPoint * trvIOContainerWorld::getCursor() {
+  return &cursor;
 }
 
 void trvIOContainerWorld::initAncestorObjects() {     ///    TO-DO:  add normal processing of objects' directory with experimental::filesystem
@@ -49,6 +51,15 @@ void trvIOContainerWorld::initMap() {
   FILE * mapFile;
   mapFile = fopen("../Maps/Cadia.trvmp", "r");
   trvFileParser::loadMapFromFile(this, mapFile);
+}
+trvGameCamera * trvIOContainerWorld::getTrvCamera() {
+  return &trvCamera;
+}
+int trvIOContainerWorld::getGameMode() const {
+  return gameMode;
+}
+void trvIOContainerWorld::setGameMode(int gameMode) {
+  this->gameMode = gameMode;
 }
 
 

@@ -10,7 +10,7 @@
 
 class trvSystemKeyboardEventsHandler : public gSystem {
  public:
-  void update(trvIOContainerWorld * gameWorld);
+  static void update(trvIOContainerWorld * gameWorld, char inputKey);
 };
 
 #endif //EVGENIJ_SCHERBAKOV_GAME_TRVSYSTEMKEYBOARDEVENTSHANDLER_H

@@ -11,8 +11,8 @@ class gPoint {
   gCore::int_t x, y;
  public:
   gPoint(gCore::int_t inputX = 0, gCore::int_t inputY = 0);
-  gCore::int_t getX();
-  gCore::int_t getY();
+  gCore::int_t getX() const;
+  gCore::int_t getY() const;
   void setX(gCore::int_t);
   void setY(gCore::int_t);
 };

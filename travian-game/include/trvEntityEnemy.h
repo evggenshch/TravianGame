@@ -1,0 +1,12 @@
+//
+// Created by evggenshch on 15.08.18.
+//
+
+#ifndef EVGENIJ_SCHERBAKOV_GAME_TRVENTITYENEMY_H
+#define EVGENIJ_SCHERBAKOV_GAME_TRVENTITYENEMY_H
+
+class trvEntityEnemy {
+
+};
+
+#endif //EVGENIJ_SCHERBAKOV_GAME_TRVENTITYENEMY_H

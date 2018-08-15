@@ -9,9 +9,9 @@ gPoint::gPoint (gCore::int_t input_x, gCore::int_t input_y) {
   setY(input_y);
 }
 
-gCore::int_t gPoint::getX() { return this->x; }
+gCore::int_t gPoint::getX() const { return this->x; }
 
-gCore::int_t gPoint::getY() { return this->y; }
+gCore::int_t gPoint::getY() const { return this->y; }
 
 void gPoint::setX(gCore::int_t input_x) { this->x = input_x; }
 

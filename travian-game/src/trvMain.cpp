@@ -9,12 +9,17 @@
 #include <thread>
 #include <vector>
 #include <string>
+#include <include/gSystem.h>
+
 #include "../include/trvIOContainerWorld.h"
+#include "../include/trvUserInterface.h"
 #include "include/gRTTimer.h"
 #include "../include/trvSystemRendering.h"
 #include "../include/trvSystemCursorMovement.h"
 #include "../include/trvSystemEnemySpawn.h"
 #include "../include/trvSystemStats.h"
+#include "../include/trvSystemKeyboardEventsHandler.h"
+#include "../include/trvSystemBuilding.h"
 
 using namespace std::chrono_literals;
 
@@ -22,9 +27,11 @@ int main() {
 //    int user_key;
 
    // while (1) {
-      std::setlocale(LC_ALL, "en_US.UTF-8");
+      std::setlocale(LC_ALL, "");
 
-      gGraphics::initGraphics();
+      //  en_US.UTF-8"
+
+     gGraphics::initGraphics();
 
      // wchar_t  a = 'a';
 
@@ -70,8 +77,8 @@ int main() {
       trvIOContainerWorld trvWorld;
   //    trvWorld.initAncestorObjects();
       trvWorld.initMap();
-      trvSystemRendering::drawGameMap(&trvWorld);
-      getch();
+   //   trvSystemRendering::drawGameMap(&trvWorld);
+    //  getch();
 
 
   /*    void game_rt_loop::init_rt_loop(gResultsCollector <g_core::rt_time > * game_results) {
@@ -81,7 +88,7 @@ int main() {
     game_world.get_map().set_g_cell_at(0, 0, '@');
     gRTTimer game_timer(game_world.get_map().get_init_rt_time());
     std::chrono::high_resolution_clock::time_point previous = std::chrono::high_resolution_clock::now();
-    double TICKS = 30.0 / static_cast<double> (game_world.get_map().get_tick_per_second());
+   double TICKS = 30.0 / static_cast<double> (game_world.get_map().get_tick_per_second());
     //    Hack for changing FPS
     std::chrono::duration <double, std::ratio<1, 30> > lag{0.0};
     int user_key = 0;
@@ -109,8 +116,86 @@ int main() {
     timeout(-1);
     game_results->change_cur_score(1.0 / static_cast<double > (30)  * TICKS);
     render_system::win_rt_report(&game_world, game_results);
-  }    */
-    //  g_ui::close_g_ui();
+  }  */
+
+/*  player user(std::vector <g_cell> (1, g_cell(0, 0, 7, 0, '@', nullptr)));
+  game_world.get_map().set_g_cell_at(0, 0, '@');  */
+
+//  const int FPS=30;
+
+
+  gRTTimer gameTimer(100.0);
+  std::chrono::high_resolution_clock::time_point previous = std::chrono::high_resolution_clock::now();
+  double TICKS = 30.0 / static_cast<double> (30);
+  std::chrono::duration <double, std::ratio<1, 30> > lag{0.0};
+  char inputKey = 0;
+  wtimeout(trvWorld.gameUI.getMapWidget()->getWidgetWindow(), 0);
+  wtimeout(trvWorld.gameUI.getInfoWidget()->getWidgetWindow(), 0);
+  while (gameTimer.getGTime() >= (1.0 / static_cast<double > (30) * TICKS) + 0.01) {
+    std::chrono::high_resolution_clock::time_point current = std::chrono::high_resolution_clock::now();
+    std::chrono::duration <double, std::ratio<1, 30> > elapsed = (current - previous);
+    previous = current;
+    lag += elapsed;
+    inputKey = 0;
+  //  inputKey = getch();
+ //   trvSystemKeyboardEventsHandler::update(&trvWorld, inputKey);
+
+  /*  int temp = getch();
+    if((temp == 'w') || (temp == 'a') || (temp == 's') || (temp == 'd')) {
+      input = temp;
+    }   */
+ /* int temp;
+    switch(trvWorld.getCurrentGameMode()) {
+      case GAME_MODES::CAMERA_MODE: {
+        temp = wgetch(trvWorld.gameUI.getMapWidget()->getWidgetWindow());
+        if((temp == 'w') || (temp == 'a') || (temp == 's') || (temp == 'd')) {
+          inputKey = temp;
+        }
+        break;
+      }
+      case GAME_MODES::BUILDING_MODE: {
+        inputKey = wgetch(trvWorld.gameUI.getMapWidget()->getWidgetWindow());
+        break;
+      }
+      default: {
+        break;
+      }
+    }  */
+    while ( (lag
+        >= std::chrono::duration <double, std::ratio<1, 30> > {1.0 * TICKS}) ) {
+
+      switch(trvWorld.getGameMode()) {
+        case GAME_MODES::CAMERA_MODE: {
+          trvSystemCursorMovement::update(&trvWorld, inputKey);
+          break;
+        }
+        case GAME_MODES::BUILDING_MODE: {
+          trvSystemBuilding::update(&trvWorld, inputKey);
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+
+  //    movement_system::update_rt(&game_world, userKey);
+  //    trvSystemEnemySpawn::update(&game_world);
+  //    stats_system::update_rt(&game_world, &game_timer, game_results);
+      lag -= std::chrono::duration <double, std::ratio<1, 30> > {1.0 * TICKS};
+  //    game_results->change_cur_score(1.0 / static_cast<double > (30) * TICKS);
+      gameTimer.change_g_time(-1.0 / static_cast<double > (30) * TICKS);
+    }
+    trvWorld.gameUI.drawUserInterface(&trvWorld);
+ //   trvSystemRendering::drawGameMap(gameUI, &trvWorld);
+ //   mvprintw(40, 40, "%lf\n", gameTimer.getGTime());
+  }
+  wtimeout(trvWorld.gameUI.getMapWidget()->getWidgetWindow(), -1);
+  wtimeout(trvWorld.gameUI.getInfoWidget()->getWidgetWindow(), -1);
+  //    game_results->change_cur_score(1.0 / static_cast<double > (30)  * TICKS);
+  //    render_system::win_rt_report(&game_world, game_results);
+
+
+    gGraphics::closeGraphics();
 }
 
 /*
