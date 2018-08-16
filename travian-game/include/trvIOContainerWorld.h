@@ -64,9 +64,10 @@ class trvIOContainerWorld {
   int yMapSize = 200, xMapSize = 200;
   trvGameCamera trvCamera{0, 0};
   gPoint cursor{0, 0};
-  int money = 300, food = 100, steel = 300, glass = 300, concrete = 300, people = 30;
+  int bonusGold = 0, bonusFood = 0;
+  int gold = 20, food = 20, steel = 300, glass = 300, concrete = 300, people = 30;
 
-
+   ///   Better to-do using std::pair <std::string, int> for resources
 
   int gameMode = CAMERA_MODE;
 
@@ -82,6 +83,7 @@ class trvIOContainerWorld {
 
   int visibleY = 40, visibleX = 40;
   gRTTimer enemyWaveTimer{80.0};
+  gRTTimer resourceTimer{15.0};
 
   trvGameCamera * getTrvCamera();
   gPoint * getCursor();
@@ -170,6 +172,15 @@ class trvIOContainerWorld {
   void setYMapSize(int yMapSize);
   int getXMapSize() const;
   void setXMapSize(int xMapSize);
+
+  void changeFoodValue(int);
+  void changeGoldValue(int);
+  void setBonusFood(int);
+  void setBonusGold(int);
+  int getBonusFood();
+  int getBonusGold();
+  int getGoldValue();
+  int getFoodValue();
 };
 
 template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg entityParams) {

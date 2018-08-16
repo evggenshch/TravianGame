@@ -12,7 +12,8 @@
 
 class trvSystemStats : public gSystem {
  public:
-  static void update(trvIOContainerWorld *, gRTTimer *, gResultsCollector < double > *);
+  static void updateBonus(trvIOContainerWorld * /*, gRTTimer *, gResultsCollector < double > * */);
+  static void updateValue(trvIOContainerWorld * /*, gRTTimer *, gResultsCollector < double > * */);
 };
 
 #endif  //  EVGENIJ_SCHERBAKOV_GAME_STATS_SYSTEM_H

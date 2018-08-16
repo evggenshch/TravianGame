@@ -20,6 +20,7 @@
 #include "../include/trvSystemStats.h"
 #include "../include/trvSystemKeyboardEventsHandler.h"
 #include "../include/trvSystemBuilding.h"
+#include "../include/trvSystemEnemyAI.h"
 
 using namespace std::chrono_literals;
 
@@ -137,6 +138,10 @@ int main() {
       trvSystemEnemySpawn::update(&trvWorld);
       trvWorld.enemyWaveTimer.setGTime(80.0);
     }
+    if(trvWorld.resourceTimer.getGTime() < (1.0 / static_cast<double > (30) * TICKS) + 0.01) {
+      trvSystemStats::updateValue(&trvWorld);
+      trvWorld.resourceTimer.setGTime(15.0);
+    }
     std::chrono::high_resolution_clock::time_point current = std::chrono::high_resolution_clock::now();
     std::chrono::duration <double, std::ratio<1, 30> > elapsed = (current - previous);
     previous = current;
@@ -182,6 +187,8 @@ int main() {
           break;
         }
       }
+      trvSystemEnemyAI::update(&trvWorld);
+      trvSystemStats::updateBonus(&trvWorld);
 
   //    movement_system::update_rt(&game_world, userKey);
   //    trvSystemEnemySpawn::update(&game_world);
@@ -190,6 +197,7 @@ int main() {
   //    game_results->change_cur_score(1.0 / static_cast<double > (30) * TICKS);
       gameTimer.change_g_time(-1.0 / static_cast<double > (30) * TICKS);
       trvWorld.enemyWaveTimer.change_g_time(-1.0 / static_cast<double> (30) * TICKS);
+      trvWorld.resourceTimer.change_g_time(-1.0 / static_cast<double> (30) * TICKS);
     }
     trvWorld.gameUI.drawUserInterface(&trvWorld);
  //   trvSystemRendering::drawGameMap(gameUI, &trvWorld);

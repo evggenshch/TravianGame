@@ -62,6 +62,37 @@ void trvIOContainerWorld::setGameMode(int gameMode) {
   this->gameMode = gameMode;
 }
 
+void trvIOContainerWorld::changeFoodValue(int changeValue) {
+  this->food += changeValue;
+}
+
+void trvIOContainerWorld::changeGoldValue(int changeValue) {
+  this->gold += changeValue;
+}
+
+void trvIOContainerWorld::setBonusFood(int changeValue) {
+  this->bonusFood = changeValue;
+}
+
+void trvIOContainerWorld::setBonusGold(int changeValue) {
+  this->bonusGold = changeValue;
+}
+
+int trvIOContainerWorld::getBonusGold() {
+  return bonusGold;
+}
+
+int trvIOContainerWorld::getBonusFood() {
+  return bonusFood;
+}
+
+int trvIOContainerWorld::getGoldValue() {
+  return gold;
+}
+
+int trvIOContainerWorld::getFoodValue() {
+  return food;
+}
 
 /*  template <typename entityClass, typename... constructorArgs> void trvIOContainerWorld::createEntity(constructorArgs... args) {
   gameObjects.insert(new entityClass(args));
