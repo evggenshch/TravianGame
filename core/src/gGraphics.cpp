@@ -21,6 +21,7 @@ void gGraphics::initGraphics() {  //   +
     init_pair(8, 1, 7);     // RED-WHITE
     init_pair(9, 6, 0);      //  CYAN-BLACK
     init_pair(10, 5, 0);    // MAGENTA-BLACK
+    init_pair(11, 4, 0);
   //  init_pair(8, );     //
   //  init_pair(9, );     //
   //  init_pair(10, );     //

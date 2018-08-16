@@ -64,8 +64,8 @@ class trvIOContainerWorld {
   int yMapSize = 200, xMapSize = 200;
   trvGameCamera trvCamera{0, 0};
   gPoint cursor{0, 0};
-  int bonusGold = 0, bonusFood = 0;
-  int gold = 20, food = 20, steel = 300, glass = 300, concrete = 300, people = 30;
+  int bonusGold = 0, bonusFood = 0, bonusSteel = 0, bonusGlass = 0, bonusConcrete = 0;
+  int gold = 20, food = 20, steel = 30, glass = 30, concrete = 30, people = 5;
 
    ///   Better to-do using std::pair <std::string, int> for resources
 
@@ -81,9 +81,12 @@ class trvIOContainerWorld {
   int getGameMode() const;
   void setGameMode(int gameMode);
 
-  int visibleY = 40, visibleX = 40;
-  gRTTimer enemyWaveTimer{80.0};
+  int visibleY = 60, visibleX = 60,  enemySpawnBorderX = 20, enemySpawnBorderY = 20;
+  unsigned  int enemySpawnSeed = 5;
+  gRTTimer enemyWaveTimer{50.0};
   gRTTimer resourceTimer{15.0};
+  gRTTimer enemyMoveTimer{3.0};
+  bool gameEnd = false;
 
   trvGameCamera * getTrvCamera();
   gPoint * getCursor();
@@ -175,12 +178,30 @@ class trvIOContainerWorld {
 
   void changeFoodValue(int);
   void changeGoldValue(int);
+  void changeSteelValue(int);
+  void changeGlassValue(int);
+  void changeConcreteValue(int);
+  void changePeopleValue(int);
+
   void setBonusFood(int);
   void setBonusGold(int);
+  void setBonusSteel(int);
+  void setBonusGlass(int);
+  void setBonusConcrete(int);
+
   int getBonusFood();
   int getBonusGold();
+  int getBonusSteel();
+  int getBonusGlass();
+  int getBonusConcrete();
+
   int getGoldValue();
   int getFoodValue();
+  int getSteelValue();
+  int getGlassValue();
+  int getConcreteValue();
+  int getPeopleValue();
+
 };
 
 template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg entityParams) {

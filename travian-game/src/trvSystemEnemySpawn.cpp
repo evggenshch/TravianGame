@@ -4,14 +4,34 @@
 
 #include <include/gGraphics.h>
 #include "../include/trvSystemEnemySpawn.h"
+#include "../include/trvSystemEntityCollision.h"
 
 void trvSystemEnemySpawn::update(trvIOContainerWorld * gameWorld) {    /*** random_device does not function for some reason  **/
 
   for(int i = 1; i <= 5; i++) {
+
+
+    bool correctPlacement = false;
+
     std::shared_ptr <trvEntity> newObj = gameWorld->copyObjects.find("CultistEnemy")->second("CultistEnemy", &gameWorld->ancestorObjects);
 
-    (*newObj).setPos(trvComponentLocation(i * 5,
-                                          5));
+    while(!correctPlacement) {
+
+      (*newObj).setPos(trvComponentLocation(rand_r(&(gameWorld->enemySpawnSeed)) % gameWorld->enemySpawnBorderX,
+                                            rand_r(&(gameWorld->enemySpawnSeed)) % gameWorld->enemySpawnBorderY));
+      correctPlacement = true;
+      std::for_each(gameWorld->gameObjects.begin(), gameWorld->gameObjects.end(), [newObj, &correctPlacement] (std::pair <std::string, std::shared_ptr <trvEntity> > curObj) {
+         if(trvSystemEntityCollision::isIntersect(newObj, curObj.second)) {
+           correctPlacement = false;
+         }
+      });
+
+    /*  if(!correctPlacement) {
+        newObj.reset();
+      }  */
+
+    }
+
 
     gameWorld->gameObjects.insert(std::pair<std::string, std::shared_ptr<trvEntity> >
                                       ("CultistEnemy", std::move(newObj)));

@@ -33,6 +33,10 @@ void trvSystemCursorMovement::update(trvIOContainerWorld *gameWorld, char inputK
       gameWorld->setGameMode(GAME_MODES::BUILDING_MODE);
       break;
     }
+    case 'q': {
+      gameWorld->gameEnd = true;
+      break;
+    }
     case 27: exit(0);
     default: break;
   }

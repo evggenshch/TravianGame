@@ -70,12 +70,42 @@ void trvIOContainerWorld::changeGoldValue(int changeValue) {
   this->gold += changeValue;
 }
 
+void trvIOContainerWorld::changeSteelValue(int changeValue) {
+  this->steel += changeValue;
+}
+
+void trvIOContainerWorld::changeGlassValue(int changeValue) {
+  this->glass += changeValue;
+}
+
+void trvIOContainerWorld::changeConcreteValue(int changeValue) {
+  this->concrete += changeValue;
+}
+
+void trvIOContainerWorld::changePeopleValue(int changeValue) {
+  this->people += changeValue;
+}
+
+
+
 void trvIOContainerWorld::setBonusFood(int changeValue) {
   this->bonusFood = changeValue;
 }
 
 void trvIOContainerWorld::setBonusGold(int changeValue) {
   this->bonusGold = changeValue;
+}
+
+void trvIOContainerWorld::setBonusSteel(int changeValue) {
+  this->bonusSteel = changeValue;
+}
+
+void trvIOContainerWorld::setBonusGlass(int changeValue) {
+  this->bonusGlass = changeValue;
+}
+
+void trvIOContainerWorld::setBonusConcrete(int changeValue) {
+  this->bonusConcrete = changeValue;
 }
 
 int trvIOContainerWorld::getBonusGold() {
@@ -86,6 +116,20 @@ int trvIOContainerWorld::getBonusFood() {
   return bonusFood;
 }
 
+int trvIOContainerWorld::getBonusSteel() {
+  return bonusSteel;
+}
+
+int trvIOContainerWorld::getBonusGlass() {
+  return bonusGlass;
+}
+
+int trvIOContainerWorld::getBonusConcrete() {
+  return bonusConcrete;
+}
+
+
+
 int trvIOContainerWorld::getGoldValue() {
   return gold;
 }
@@ -93,6 +137,23 @@ int trvIOContainerWorld::getGoldValue() {
 int trvIOContainerWorld::getFoodValue() {
   return food;
 }
+
+int trvIOContainerWorld::getSteelValue() {
+  return steel;
+}
+
+int trvIOContainerWorld::getGlassValue() {
+  return glass;
+}
+
+int trvIOContainerWorld::getConcreteValue() {
+  return concrete;
+}
+
+int trvIOContainerWorld::getPeopleValue() {
+  return people;
+}
+
 
 /*  template <typename entityClass, typename... constructorArgs> void trvIOContainerWorld::createEntity(constructorArgs... args) {
   gameObjects.insert(new entityClass(args));

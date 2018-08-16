@@ -5,6 +5,7 @@
 #include "../include/trvWidgetInfo.h"
 #include "../include/trvIOContainerWorld.h"
 #include "../../core/include/gGraphics.h"
+#include "../include/trvSystemEntityCollision.h"
 
 void trvWidgetInfo::drawWidget() {
   trvWidget::drawWidget();
@@ -30,14 +31,14 @@ void trvWidgetInfo::changeSelectedOption(int changeValue) {
 }
 
 
-bool isInside(gPoint checkPoint, std::shared_ptr <trvEntity> rec) {
+/*  bool isInside(gPoint checkPoint, std::shared_ptr <trvEntity> rec) {
     return ((checkPoint.getX() >= rec->getPos().getX()) &&
         (checkPoint.getY() >= rec->getPos().getY()) &&
         (checkPoint.getX() <= (rec->getPos().getX()
         + static_cast <int> (rec->getModel().getArray()[0].size()))) &&
         (checkPoint.getY() <= (rec->getPos().getY()
         + static_cast <int> (rec->getModel().getArray().size()))));
-}
+}   */
 
 
 
@@ -53,22 +54,18 @@ void trvWidgetInfo::buildSelectedOption(trvIOContainerWorld * gameWorld) {
   int newObjBottomY = gameWorld->getCursor()->getY() + static_cast<int> (newObj->getModel().getArray().size() );
   int newObjRightX = gameWorld->getCursor()->getX() + static_cast<int> (newObj->getModel().getArray()[0].size());
 
+
+  (*newObj).setPos(trvComponentLocation(gameWorld->getCursor()->getX(),
+                                        gameWorld->getCursor()->getY()));
+
   if((newObjRightX < gameWorld->getXMapSize()) || (newObjBottomY < gameWorld->getYMapSize())) {
      std::for_each(gameWorld->gameObjects.begin(), gameWorld->gameObjects.end(), [newObj, gameWorld, newObjBottomY, newObjRightX, &isPlaceable]
          (std::pair <std::string, std::shared_ptr <trvEntity> > curObj) {
 
-        int curObjBottomY = curObj.second->getPos().getY() + static_cast<int> (curObj.second->getModel().getArray().size());
-        int curObjRightX = curObj.second->getPos().getX() + static_cast<int> (curObj.second->getModel().getArray()[0].size());
+  //      int curObjBottomY = curObj.second->getPos().getY() + static_cast<int> (curObj.second->getModel().getArray().size());
+  //      int curObjRightX = curObj.second->getPos().getX() + static_cast<int> (curObj.second->getModel().getArray()[0].size());
 
-        if(isInside(gPoint(curObj.second->getPos().getX(), curObj.second->getPos().getY()), newObj)
-            || isInside(gPoint(curObjRightX, curObj.second->getPos().getY()), newObj)
-            || isInside(gPoint(curObj.second->getPos().getX(), curObjBottomY), newObj)
-            || isInside(gPoint(curObjRightX, curObjBottomY), newObj)
-            || isInside(gPoint(gameWorld->getCursor()->getX(), gameWorld->getCursor()->getY()), curObj.second)
-            || isInside(gPoint(newObjRightX, gameWorld->getCursor()->getY()), curObj.second)
-            || isInside(gPoint(gameWorld->getCursor()->getX(), newObjBottomY), curObj.second)
-            || isInside(gPoint(newObjRightX, newObjBottomY), curObj.second)
-            ) {
+        if(trvSystemEntityCollision::isIntersect(newObj, curObj.second)) {
            isPlaceable = false;
         }
      });
@@ -78,8 +75,6 @@ void trvWidgetInfo::buildSelectedOption(trvIOContainerWorld * gameWorld) {
   }
 
   if(isPlaceable) {
-    (*newObj).setPos(trvComponentLocation(gameWorld->getCursor()->getX(),
-                                          gameWorld->getCursor()->getY()));
 
     gameWorld->gameObjects.insert(std::pair<std::string, std::shared_ptr<trvEntity> >
                                       (options[selectedOption], std::move(newObj)));

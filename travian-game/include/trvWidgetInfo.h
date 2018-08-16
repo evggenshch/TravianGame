@@ -13,7 +13,7 @@ class trvIOContainerWorld;
 class trvWidgetInfo : public trvWidget {
  private:
    int selectedOption = 0;
-   std::vector < std::string > options = { "MainBuilding", "MachineGunPoint", "FoodFarm", "GoldMine" };
+   std::vector < std::string > options = { "MachineGunPoint", "FoodFarm", "GoldMine" };
  public:
    trvWidgetInfo() {};
    trvWidgetInfo(int height, int width, int topLeftY, int topLeftX) : trvWidget(height, width, topLeftY, topLeftX) {};

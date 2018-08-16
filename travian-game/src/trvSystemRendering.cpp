@@ -8,7 +8,8 @@
 #include "../../core/include/gGraphics.h"
 
 
-void trvSystemRendering::drawGameObject(WINDOW * mapWindow, std::pair <std::string, std::shared_ptr <trvEntity> > inputNode, trvGameCamera * trvCamera) {
+void trvSystemRendering::drawGameObject(WINDOW * mapWindow, std::pair <std::string, std::shared_ptr <trvEntity> > inputNode, trvGameCamera * trvCamera,
+int visibleY, int visibleX) {
 
 
   trvEntity gameObject = *inputNode.second;
@@ -16,8 +17,8 @@ void trvSystemRendering::drawGameObject(WINDOW * mapWindow, std::pair <std::stri
       for (size_t j = 0; j < gameObject.getModel().getArray()[i].size(); j++) {
              int toY = gameObject.getPos().getY() + /* gameObject.getModel().getArray()[i][j].getY() */ + i;
              int toX = gameObject.getPos().getX() /* + gameObject.getModel().getArray()[i][j].getX() */ + j;
-            if(((toY - trvCamera->getCameraDY() + 1) >= 1) && ((toY - trvCamera->getCameraDY() + 1) <= 40)
-                && ((toX - trvCamera->getCameraDX() + 1) >= 1) && ((toX - trvCamera->getCameraDX() + 1) <= 40)) {
+            if(((toY - trvCamera->getCameraDY() + 1) >= 1) && ((toY - trvCamera->getCameraDY() + 1) <= visibleY)
+                && ((toX - trvCamera->getCameraDX() + 1) >= 1) && ((toX - trvCamera->getCameraDX() + 1) <= visibleX)) {
             /*  init_pair(i * gameObject.getModel().getArray()[i].size() + j,
                         gameObject.getModel().getArray()[i][j].getForeColor(),
                         gameObject.getModel().getArray()[i][j].getBackColor());  */
@@ -43,7 +44,7 @@ void trvSystemRendering::drawGameMap(WINDOW * mapWindow, trvIOContainerWorld *ga
     }
   }
   std::for_each(gameWorld->gameObjects.begin(), gameWorld->gameObjects.end(), [gameWorld, mapWindow](std::pair <std::string, std::shared_ptr <trvEntity> > inputNode)
-                { drawGameObject(mapWindow, inputNode, gameWorld->getTrvCamera()); }
+                { drawGameObject(mapWindow, inputNode, gameWorld->getTrvCamera(), gameWorld->visibleY, gameWorld->visibleX); }
   );
   wattron(mapWindow, COLOR_PAIR(10));
   mvwprintw(mapWindow, gameWorld->getCursor()->getY() - gameWorld->getTrvCamera()->getCameraDY() + 1,

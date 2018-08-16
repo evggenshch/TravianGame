@@ -10,5 +10,4 @@
 void trvWidgetMap::drawWidget(trvIOContainerWorld * gameWorld) {
   trvWidget::drawWidget();
   trvSystemRendering::drawGameMap(getWidgetWindow(), gameWorld);
-  mvwprintw(getWidgetWindow(), 40, 40, "%i", gameWorld->getGameMode());
 }

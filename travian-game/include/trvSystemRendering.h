@@ -18,7 +18,7 @@ class trvIOContainerWorld;
 
 class trvSystemRendering : public gSystem {
  public:
-  static void drawGameObject(WINDOW *, std::pair <std::string, std::shared_ptr <trvEntity> >, trvGameCamera *);
+  static void drawGameObject(WINDOW *, std::pair <std::string, std::shared_ptr <trvEntity> >, trvGameCamera *, int, int);
   static void drawGameMap(WINDOW *,  trvIOContainerWorld * gameWorld);
   static void update(trvIOContainerWorld * gameWorld);
  // static void update_rt(trvIOContainerWorld * gameWorld, gRTTimer * game_time);

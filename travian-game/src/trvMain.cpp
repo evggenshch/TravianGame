@@ -125,7 +125,7 @@ int main() {
 //  const int FPS=30;
 
 
-  gRTTimer gameTimer(2000.0);
+  gRTTimer gameTimer(6000.0);
 
   std::chrono::high_resolution_clock::time_point previous = std::chrono::high_resolution_clock::now();
   double TICKS = 30.0 / static_cast<double> (30);
@@ -133,14 +133,18 @@ int main() {
   char inputKey = 0;
   wtimeout(trvWorld.gameUI.getMapWidget()->getWidgetWindow(), 0);
   wtimeout(trvWorld.gameUI.getInfoWidget()->getWidgetWindow(), 0);
-  while (gameTimer.getGTime() >= (1.0 / static_cast<double > (30) * TICKS) + 0.01) {
+  while ((gameTimer.getGTime() >= (1.0 / static_cast<double > (30) * TICKS) + 0.01) && (!trvWorld.gameEnd)) {
     if(trvWorld.enemyWaveTimer.getGTime() < (1.0 / static_cast<double > (30) * TICKS) + 0.01) {
       trvSystemEnemySpawn::update(&trvWorld);
-      trvWorld.enemyWaveTimer.setGTime(80.0);
+      trvWorld.enemyWaveTimer.setGTime(50.0);
     }
     if(trvWorld.resourceTimer.getGTime() < (1.0 / static_cast<double > (30) * TICKS) + 0.01) {
       trvSystemStats::updateValue(&trvWorld);
       trvWorld.resourceTimer.setGTime(15.0);
+    }
+    if(trvWorld.enemyMoveTimer.getGTime() < ((1.0 / static_cast<double > (30) * TICKS) + 0.01)) {
+      trvSystemEnemyAI::update(&trvWorld);
+      trvWorld.enemyMoveTimer.setGTime(3.0);
     }
     std::chrono::high_resolution_clock::time_point current = std::chrono::high_resolution_clock::now();
     std::chrono::duration <double, std::ratio<1, 30> > elapsed = (current - previous);
@@ -187,7 +191,7 @@ int main() {
           break;
         }
       }
-      trvSystemEnemyAI::update(&trvWorld);
+      // trvSystemEnemyAI::update(&trvWorld);
       trvSystemStats::updateBonus(&trvWorld);
 
   //    movement_system::update_rt(&game_world, userKey);
@@ -198,6 +202,7 @@ int main() {
       gameTimer.change_g_time(-1.0 / static_cast<double > (30) * TICKS);
       trvWorld.enemyWaveTimer.change_g_time(-1.0 / static_cast<double> (30) * TICKS);
       trvWorld.resourceTimer.change_g_time(-1.0 / static_cast<double> (30) * TICKS);
+      trvWorld.enemyMoveTimer.change_g_time(-1.0 / static_cast<double> (30) * TICKS);
     }
     trvWorld.gameUI.drawUserInterface(&trvWorld);
  //   trvSystemRendering::drawGameMap(gameUI, &trvWorld);
