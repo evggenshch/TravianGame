@@ -6,6 +6,16 @@
 #include "../include/trvSystemEnemySpawn.h"
 
 void trvSystemEnemySpawn::update(trvIOContainerWorld * gameWorld) {    /*** random_device does not function for some reason  **/
+
+  for(int i = 1; i <= 5; i++) {
+    std::shared_ptr <trvEntity> newObj = gameWorld->copyObjects.find("CultistEnemy")->second("CultistEnemy", &gameWorld->ancestorObjects);
+
+    (*newObj).setPos(trvComponentLocation(i * 5,
+                                          5));
+
+    gameWorld->gameObjects.insert(std::pair<std::string, std::shared_ptr<trvEntity> >
+                                      ("CultistEnemy", std::move(newObj)));
+  }
   // bool flag_success = false;
   // std::random_device rd;
   // std::mt19937 mt(rand());

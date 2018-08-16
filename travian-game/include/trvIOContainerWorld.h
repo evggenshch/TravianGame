@@ -18,6 +18,7 @@
 #include "trvEntityGoldMine.h"
 #include "trvGameCamera.h"
 #include "trvUserInterface.h"
+#include "../../core/include/gRTTimer.h"
 
 #include "trvPtrEntityMap.h"
 
@@ -60,7 +61,7 @@ template <typename T> std::unique_ptr<T> entityInit(entityConstructorArg);
 class trvIOContainerWorld {
  private:
 
-  int yMapSize = 100, xMapSize = 100;
+  int yMapSize = 200, xMapSize = 200;
   trvGameCamera trvCamera{0, 0};
   gPoint cursor{0, 0};
   int money = 300, food = 100, steel = 300, glass = 300, concrete = 300, people = 30;
@@ -79,7 +80,8 @@ class trvIOContainerWorld {
   int getGameMode() const;
   void setGameMode(int gameMode);
 
-
+  int visibleY = 40, visibleX = 40;
+  gRTTimer enemyWaveTimer{80.0};
 
   trvGameCamera * getTrvCamera();
   gPoint * getCursor();
@@ -107,9 +109,7 @@ class trvIOContainerWorld {
         for(size_t i = 0; i < static_cast<size_t > (ySize); i++) {
           for(size_t j = 0; j < static_cast<size_t > (xSize); j++) {
             fscanf(componentFile, "%i", &curInt);
-            graphicArray[i][j].setForeColor(curInt);
-            fscanf(componentFile, "%i", &curInt);
-            graphicArray[i][j].setBackColor(curInt);
+            graphicArray[i][j].setColorPair(curInt);
           }
         }
         fscanf(componentFile, "\n");

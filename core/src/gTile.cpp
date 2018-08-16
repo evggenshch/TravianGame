@@ -7,24 +7,21 @@
 
 //    void gTile::setX(int x) { this->x = x; }
 //    void gTile::setY(int y) { this->y = y; }
-void gTile::setForeColor(int foreColor) { this->foreColor = foreColor; }
-void gTile::setBackColor(int backColor) { this->backColor = backColor; }
+void gTile::setColorPair(int colorPair) { this->colorPair = colorPair; }
 void gTile::setSym(wchar_t sym) { this->sym = sym; }
 
 
-int gTile::getForeColor() const { return foreColor; }
-int gTile::getBackColor() const { return backColor; }
+int gTile::getColorPair() const { return colorPair; }
 wchar_t gTile::getSym() const { return  sym; }
 
-gTile::gTile(int fore_color, int back_color, wchar_t sym) {
-    this->setForeColor(fore_color);
-    this->setBackColor(back_color);
+gTile::gTile(int colorPair, wchar_t sym) {
+    this->setColorPair(colorPair);
     this->setSym(sym);
 }
 
-gTile::gTile(int x, int y, int fore_color, int back_color, wchar_t sym) {
+gTile::gTile(int x, int y, int colorPair, wchar_t sym) {
     this->setX(x);
-    this->setY(y);
+    this->setY(y);  ///  ?????
     gTile();
 }
 

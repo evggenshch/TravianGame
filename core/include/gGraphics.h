@@ -17,6 +17,12 @@
  * Facade for graphics, responsible for user interface
  */
 
+enum TRV_COLORS {
+  WHITE_BLACK,
+  BLACK_WHITE,
+  CYAN_WHITE,
+  GREEN_BLACK
+};
 
 class gGraphics {
 public:

@@ -30,23 +30,33 @@ void trvSystemCursorMovement::update(trvIOContainerWorld *gameWorld, char inputK
       break;
     }
     case 'b': {
-      mvwprintw(gameWorld->gameUI.getMapWidget()->getWidgetWindow(), 60, 60, "%s", "HY");
       gameWorld->setGameMode(GAME_MODES::BUILDING_MODE);
       break;
     }
     case 27: exit(0);
     default: break;
   }
-  int toX = gameWorld->getCursor()->getX() + dx;
-  int toY = gameWorld->getCursor()->getY() + dy;
-  if((toX >= 0) && (toX < 30) && (toY >= 0) && (toY < 30)) {
+  int toX = gameWorld->getCursor()->getX()  + dx /*- gameWorld->getTrvCamera()->getCameraDX() */;
+  int toY = gameWorld->getCursor()->getY()  + dy /*- gameWorld->getTrvCamera()->getCameraDY() */;
+  if((toX >= 0) && (toX <= gameWorld->getXMapSize()) && (toY >= 0) && (toY <= gameWorld->getYMapSize())) {
+      gameWorld->getCursor()->setX(toX);
+      gameWorld->getCursor()->setY(toY);
+      if(((toX - gameWorld->getTrvCamera()->getCameraDX() + 1) < 1) || ((toX - gameWorld->getTrvCamera()->getCameraDX() + 1) > gameWorld->visibleX)
+          || ((toY - gameWorld->getTrvCamera()->getCameraDY() + 1) < 1) || ((toY - gameWorld->getTrvCamera()->getCameraDY() + 1) > gameWorld->visibleY)) {
+        gameWorld->getTrvCamera()->changeCameraDY(dy);
+        gameWorld->getTrvCamera()->changeCameraDX(dx);
+      }
+  }
+
+
+ /* if((toX >= 1) && (toX <= gameWorld->visibleX) && (toY >= 1) && (toY <= gameWorld->visibleY)) {
     gameWorld->getCursor()->setX(toX);
     gameWorld->getCursor()->setY(toY);
   }
   else {
     gameWorld->getTrvCamera()->changeCameraDY(dy);
     gameWorld->getTrvCamera()->changeCameraDX(dx);
-  }
+  }  */
   /*    for (size_t i = 0; i < g_w->get_players().get_location().get_position_size(); i++) {
     int x_mov = g_w->get_players().get_location().get_posittion_at(i).get_x() + dx,
         y_mov = g_w->get_players().get_location().get_posittion_at(i).get_y() + dy;

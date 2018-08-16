@@ -17,6 +17,7 @@ trvWidget::~trvWidget() {
 }
 
 void trvWidget::drawWidget() {
+  curs_set(0);
   wborder(widgetWindow, '|', '|', '-', '-', '+', '+', '+', '+');
   mvprintw(topLeftY, topLeftX + (width - name.length()) / 2, "%s", name.c_str());
   wrefresh(widgetWindow);

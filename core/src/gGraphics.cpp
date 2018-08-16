@@ -5,10 +5,25 @@
 #include <include/gRTTimer.h>
 #include "include/gGraphics.h"
 
+
+
 void gGraphics::initGraphics() {  //   +
     initscr();
     noecho();
     start_color();
+    init_pair(1, 7, 0);     // WHITE-BLACK
+    init_pair(2, 0, 7);     //  BLACK-WHITE
+    init_pair(3, 4, 7);         //  BLUE-WHITE
+    init_pair(4, 2, 0);     //  GREEN-BLACK
+    init_pair(5, 3, 0);     //  YELLOW-BLACK
+    init_pair(6, 3, 7);     //  YELLOW-WHITE
+    init_pair(7, 1, 0);     //  RED-BLACK
+    init_pair(8, 1, 7);     // RED-WHITE
+    init_pair(9, 6, 0);      //  CYAN-BLACK
+    init_pair(10, 5, 0);    // MAGENTA-BLACK
+  //  init_pair(8, );     //
+  //  init_pair(9, );     //
+  //  init_pair(10, );     //
 }
 
 void gGraphics::drawDialog(gDialog * gameDialog) {    //   +
@@ -41,12 +56,12 @@ template <typename T> void gGraphics::drawEntity(T * inputEntity) {
 }
 
 
-void gGraphics::drawTile(gTile cur_cel) {
+/*  void gGraphics::drawTile(gTile cur_cel) {
     init_pair(1, static_cast<short> (cur_cel.getForeColor()), static_cast<short> (cur_cel.getBackColor()));
     attron(COLOR_PAIR(1));
     mvprintw(cur_cel.getY() + 1, cur_cel.getX() + 1, "%c", cur_cel.getSym());
     attroff(COLOR_PAIR(1));
-}
+}   */
 
 /*    void gGraphics::drawMap(gMap & cur_map) {
     clear();

@@ -25,5 +25,5 @@ trvWidgetStats * trvUserInterface::getStatsWidget()  {
 void trvUserInterface::drawUserInterface(trvIOContainerWorld * gameWorld) {
   mapWidget.drawWidget(gameWorld);
   infoWidget.drawWidget();
-  statsWidget.drawWidget();
+  statsWidget.drawWidget(gameWorld);
 }

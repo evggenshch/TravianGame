@@ -5,6 +5,7 @@
 #include "../include/trvSystemRendering.h"
 #include <ncursesw/cursesw.h>
 #include "../include/trvIOContainerWorld.h"
+#include "../../core/include/gGraphics.h"
 
 
 void trvSystemRendering::drawGameObject(WINDOW * mapWindow, std::pair <std::string, std::shared_ptr <trvEntity> > inputNode, trvGameCamera * trvCamera) {
@@ -13,40 +14,46 @@ void trvSystemRendering::drawGameObject(WINDOW * mapWindow, std::pair <std::stri
   trvEntity gameObject = *inputNode.second;
     for (size_t i = 0; i < gameObject.getModel().getArray().size(); i++) {
       for (size_t j = 0; j < gameObject.getModel().getArray()[i].size(); j++) {
-             int toY = gameObject.getPos().getY() + gameObject.getModel().getArray()[i][j].getY() + i;
-             int toX = gameObject.getPos().getX() + gameObject.getModel().getArray()[i][j].getX() + j;
-            if((toY - trvCamera->getCameraDY() >= 0) && (toY - trvCamera->getCameraDY() <= 30)
-                && (toX - trvCamera->getCameraDX() >= 0) && (toX - trvCamera->getCameraDX() <= 30)) {
-              init_pair(i * gameObject.getModel().getArray()[i].size() + j,
+             int toY = gameObject.getPos().getY() + /* gameObject.getModel().getArray()[i][j].getY() */ + i;
+             int toX = gameObject.getPos().getX() /* + gameObject.getModel().getArray()[i][j].getX() */ + j;
+            if(((toY - trvCamera->getCameraDY() + 1) >= 1) && ((toY - trvCamera->getCameraDY() + 1) <= 40)
+                && ((toX - trvCamera->getCameraDX() + 1) >= 1) && ((toX - trvCamera->getCameraDX() + 1) <= 40)) {
+            /*  init_pair(i * gameObject.getModel().getArray()[i].size() + j,
                         gameObject.getModel().getArray()[i][j].getForeColor(),
-                        gameObject.getModel().getArray()[i][j].getBackColor());
-              wattron(mapWindow, COLOR_PAIR(i * gameObject.getModel().getArray()[i].size() + j));
+                        gameObject.getModel().getArray()[i][j].getBackColor());  */
+              wattron(mapWindow, COLOR_PAIR(gameObject.getModel().getArray()[i][j].getColorPair()));
             //  mvaddc
             //  mvaddwstr(gameObject.getPos().getY() + i, gameObject.getPos().getX() + j, gameObject.getModel().getArray()[i][j].getSym());
               mvwprintw(mapWindow, toY - trvCamera->getCameraDY() + 1,
                        toX - trvCamera->getCameraDX() + 1,
                        "%lc",
                        gameObject.getModel().getArray()[i][j].getSym());
-              wattroff(mapWindow, COLOR_PAIR(i * gameObject.getModel().getArray()[i].size() + j));
+              wattroff(mapWindow, COLOR_PAIR(gameObject.getModel().getArray()[i][j].getColorPair()));
             }
       }
     }
 }
 
 void trvSystemRendering::drawGameMap(WINDOW * mapWindow, trvIOContainerWorld *gameWorld) {
-  for(size_t i = 0; i < 30  /* static_cast<size_t > (gameWorld->getYMapSize()) */; i++) {
-    for(size_t j = 0; j < 30 /* static_cast<size_t > (gameWorld->getXMapSize()) */; j++) {
-      mvwprintw(mapWindow, i + 1, j + 1, ".");
+  for(size_t i = std::max(-gameWorld->getTrvCamera()->getCameraDY(), 1); i <=
+      static_cast<size_t > (std::min(gameWorld->getYMapSize() - gameWorld->getTrvCamera()->getCameraDY(), gameWorld->visibleY)) /* static_cast<size_t > (gameWorld->getYMapSize()) */; i++) {
+    for(size_t j = std::max(-gameWorld->getTrvCamera()->getCameraDX(), 1); j <=
+        static_cast<size_t >  (std::min(gameWorld->getXMapSize() - gameWorld->getTrvCamera()->getCameraDX(), gameWorld->visibleX)) /* static_cast<size_t > (gameWorld->getXMapSize()) */; j++) {
+      mvwprintw(mapWindow, i, j, ".");
     }
   }
   std::for_each(gameWorld->gameObjects.begin(), gameWorld->gameObjects.end(), [gameWorld, mapWindow](std::pair <std::string, std::shared_ptr <trvEntity> > inputNode)
                 { drawGameObject(mapWindow, inputNode, gameWorld->getTrvCamera()); }
   );
-  init_pair(2, 5, 0);
-  wattron(mapWindow, COLOR_PAIR(2));
-  mvwprintw(mapWindow, gameWorld->getCursor()->getY() + 1, gameWorld->getCursor()->getX() + 1, "X");
-  wattroff(mapWindow, COLOR_PAIR(2));
+  wattron(mapWindow, COLOR_PAIR(10));
+  mvwprintw(mapWindow, gameWorld->getCursor()->getY() - gameWorld->getTrvCamera()->getCameraDY() + 1,
+            gameWorld->getCursor()->getX() - gameWorld->getTrvCamera()->getCameraDX() + 1, "X");
+  wattroff(mapWindow, COLOR_PAIR(10));
 }
+
+///   In cursor variable - actual position on the game field
+/// In camera - neccessary shift of objects and cursor
+
 
 /*    void trvSystemRendering::update_rt(trvIOContainerWorld * gameWorld, gRTTimer * game_timer) {
   drawGameMap(gameWorld);

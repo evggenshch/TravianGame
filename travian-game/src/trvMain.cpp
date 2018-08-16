@@ -124,7 +124,8 @@ int main() {
 //  const int FPS=30;
 
 
-  gRTTimer gameTimer(100.0);
+  gRTTimer gameTimer(2000.0);
+
   std::chrono::high_resolution_clock::time_point previous = std::chrono::high_resolution_clock::now();
   double TICKS = 30.0 / static_cast<double> (30);
   std::chrono::duration <double, std::ratio<1, 30> > lag{0.0};
@@ -132,6 +133,10 @@ int main() {
   wtimeout(trvWorld.gameUI.getMapWidget()->getWidgetWindow(), 0);
   wtimeout(trvWorld.gameUI.getInfoWidget()->getWidgetWindow(), 0);
   while (gameTimer.getGTime() >= (1.0 / static_cast<double > (30) * TICKS) + 0.01) {
+    if(trvWorld.enemyWaveTimer.getGTime() < (1.0 / static_cast<double > (30) * TICKS) + 0.01) {
+      trvSystemEnemySpawn::update(&trvWorld);
+      trvWorld.enemyWaveTimer.setGTime(80.0);
+    }
     std::chrono::high_resolution_clock::time_point current = std::chrono::high_resolution_clock::now();
     std::chrono::duration <double, std::ratio<1, 30> > elapsed = (current - previous);
     previous = current;
@@ -184,6 +189,7 @@ int main() {
       lag -= std::chrono::duration <double, std::ratio<1, 30> > {1.0 * TICKS};
   //    game_results->change_cur_score(1.0 / static_cast<double > (30) * TICKS);
       gameTimer.change_g_time(-1.0 / static_cast<double > (30) * TICKS);
+      trvWorld.enemyWaveTimer.change_g_time(-1.0 / static_cast<double> (30) * TICKS);
     }
     trvWorld.gameUI.drawUserInterface(&trvWorld);
  //   trvSystemRendering::drawGameMap(gameUI, &trvWorld);
